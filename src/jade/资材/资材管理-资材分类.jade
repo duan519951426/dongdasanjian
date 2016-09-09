@@ -1,0 +1,45 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        // 查询
+        form.eui-queryBox.clearfix#form
+            div.eui-queryBox-left
+                span.eui-queryBox-group
+                    |资材名称：
+                    input.easyui-textbox.eui-formComponent#ipt2(type='text')
+            div.eui-queryBox-right
+                a.easyui-linkbutton#formQuery(data-options="iconCls: 'icon-search'") 查询
+                a.easyui-linkbutton#formAll(data-options="iconCls: 'icon-filter'") 显示全部
+        // 数据
+        table#table(style='width: 100%;' data-options="toolbar: '#toolbar-all'")
+            thead
+                tr
+                    th(data-options="field: 'name', width: '30%'") 名称
+                    th(data-options="field: 'persons', width: '30%'") 类型
+                    th(data-options="field: 'begin', width: '20%'") 成本项目分类
+                    th(data-options="field: 'end', width: '20%'") 状态
+        // 工具栏
+        div.display-none
+            // 全部
+            div#toolbar-all
+                a.easyui-linkbutton(data-options="iconCls:'icon-edit', plain:true") 修改资料分类
+                a.easyui-linkbutton(data-options="iconCls:'icon-search', plain:true") 查看详细
+                a.easyui-linkbutton(data-options="iconCls: 'icon-add', plain:true") 添加分类
+                a.easyui-linkbutton(data-options="iconCls: 'icon-add', plain:true") 添加资材名称
+                a.easyui-linkbutton(data-options="iconCls: 'icon-cancel', plain:true") 删除
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initTreegrid", "btnCtrlTable", "formQuery"], function(common, initTreegrid, btnCtrlTable, formQuery){
+                var $table= $("#table");
+                initTreegrid($table);
+                // btnCtrlTable();
+            });

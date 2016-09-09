@@ -1,0 +1,58 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        // 查询
+        form.eui-queryBox.clearfix#form
+            div.eui-queryBox-left
+                span.eui-queryBox-group
+                    |资材名称：
+                    input.easyui-textbox.eui-formComponent(type='text')
+                span.eui-queryBox-group
+                    |规格型号：
+                    input.easyui-textbox.eui-formComponent(type='text')
+                span.eui-queryBox-group
+                    |供应商：
+                    input.easyui-textbox.eui-formComponent(type='text')
+            div.eui-queryBox-right
+                a.easyui-linkbutton#formQuery(data-options="iconCls: 'icon-search'") 查询
+                a.easyui-linkbutton#formReset(data-options="iconCls: 'icon-clear'") 重置
+        // 数据
+        table#table(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data2', toolbar: '#toolbar-all'")
+            thead
+                tr
+                    th(data-options="field: 'f2', width: '20%'") 资材名称
+                    th(data-options="field: 'f4', width: '10%'") 资材规格型号
+                    th(data-options="field: 'f2', width: '10%'") 供应商
+                    th(data-options="field: 'f2', width: '10%'") 单位
+                    th(data-options="field: 'f4', width: '10%'") 单价
+                    th(data-options="field: 'f3', width: '10%'") 此单价对应日期
+                    th(data-options="field: 'f4', width: '10%'") 状态
+        // 工具栏
+        div.display-none
+            div#toolbar-all
+                a.easyui-linkbutton(data-options="iconCls:'icon-edit', plain:true") 修改资料
+                a.easyui-linkbutton(data-options="iconCls:'icon-search', plain:true") 查看详细
+                a.easyui-linkbutton(data-options="iconCls:'icon-cancel', plain:true") 删除
+                a.easyui-linkbutton(href='./资材管理-资材管理-添加新资材.html' data-options="iconCls:'icon-add', plain:true") 添加新资材
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid", "btnCtrlTable", "formQuery", "formReset"], function (common, initDatagrid, btnCtrlTable, formQuery, formReset) {
+                var $table = $("#table");
+                initDatagrid($table);
+                // btnCtrlTable($btnLook, null, "https://baidu.com", "openWindow", null);
+                // 查询
+                formQuery($("#formQuery"), $table, "http://127.0.0.1:10086/data1");
+                // 重置
+                formReset($("#formReset"), $("#form"));
+            });
+
+

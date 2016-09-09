@@ -1,0 +1,125 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        // 选项卡
+        div.easyui-tabs#easyui-tabs(style='width: 100%;')
+            div(title='全部' style='padding: 10px;')
+                table#applicationInformationTable_all(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1', toolbar: '#toolbar-all'")
+                    thead
+                        tr
+                            th(data-options="field: 'f1', width: '20%'") 申请类型
+                            th(data-options="field: 'f2', width: '20%'") 申请状态
+                            th(data-options="field: 'f3', width: '40%'") 申请内容
+                            th(data-options="field: 'f4', width: '20%'") 申请时间
+            div(title='确认中' style='padding: 10px;')
+                table#applicationInformationTable_inConfirmation(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1'")
+                    thead
+                        tr
+                            th(data-options="field: 'f1', width: '25%'") 申请类型
+                            th(data-options="field: 'f3', width: '50%'") 申请内容
+                            th(data-options="field: 'f4', width: '25%'") 申请时间
+            div(title='通过' style='padding: 10px;')
+                table#applicationInformationTable_adopt(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1', toolbar: '#toolbar-adopt'")
+                    thead
+                        tr
+                            th(data-options="field: 'f1', width: '25%'") 申请类型
+                            th(data-options="field: 'f3', width: '50%'") 申请内容
+                            th(data-options="field: 'f4', width: '25%'") 申请时间
+            div(title='驳回' style='padding: 10px;')
+                table#applicationInformationTable_reject(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1'")
+                    thead
+                        tr
+                            th(data-options="field: 'f1', width: '25%'") 申请类型
+                            th(data-options="field: 'f3', width: '50%'") 申请内容
+                            th(data-options="field: 'f4', width: '25%'") 申请时间
+            div(title='删除' style='padding: 10px;')
+                table#applicationInformationTable_del(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1', toolbar: '#toolbar-del'")
+                    thead
+                        tr
+                            th(data-options="field: 'f1', width: '25%'") 申请类型
+                            th(data-options="field: 'f3', width: '50%'") 申请内容
+                            th(data-options="field: 'f4', width: '25%'") 申请时间
+        // 工具栏
+        div.display-none
+            // 全部
+            div#toolbar-all
+                a.easyui-linkbutton.js-toolbar-look#toolbar-all-look(data-options="iconCls:'icon-search', plain:true") 查看
+                a.easyui-linkbutton.js-toolbar-del#toolbar-all-del(data-options="iconCls:'icon-cancel', plain:true") 删除
+            // 通过
+            div#toolbar-adopt
+                a.easyui-linkbutton.js-toolbar-look(data-options="iconCls: 'icon-search', plain: true") 查看
+                a.easyui-linkbutton.js-toolbar-del(data-options="iconCls: 'icon-cancel', plain: true") 删除
+                a.easyui-linkbutton.js-toolbar-back(data-options="iconCls: 'icon-undo', plain: true") 一键回执
+            // 删除
+            div#toolbar-del
+                a.easyui-linkbutton.js-toolbar-del(data-options="iconCls: 'icon-cancel', plain: true") 删除
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid", "tabsEventListenerFun", "btnCtrlTable"], function(common, initDatagrid, tabsEventListenerFun, btnCtrlTable){
+                // 模块加载
+                // 配置选项
+                var url = "http://127.0.0.1:10086/data1";
+
+
+                var $applicationInformationTable = [
+                    $("#applicationInformationTable_all"),              // 全部
+                    $("#applicationInformationTable_inConfirmation"), // 确认中
+                    $("#applicationInformationTable_adopt"),           // 通过
+                    $("#applicationInformationTable_reject"),          // 驳回
+                    $("#applicationInformationTable_del")              // 删除
+                ];
+                var btn = [
+                    {
+                        "look": $("#toolbar-all-look"),
+                        "del": $("#toolbar-all-del")
+                    },
+                    null, null, null, null
+                ];
+
+
+                // 选项卡事件
+                var fun = [];
+                for (var i = 0, j = $applicationInformationTable.length; i < j; i++) {
+                    fun.push((function () {
+                        var $e = $applicationInformationTable[i];
+                        var b = btn[i];
+                        return function(){
+                            initDatagrid($e, b);
+                        };
+                    })());
+                }
+                // 为选项卡添加事件
+                tabsEventListenerFun($("#easyui-tabs"), fun, false, 0);
+
+
+                // 操作表格的数据
+                btnCtrlTable($(".js-toolbar-del"), $applicationInformationTable, url, "ajax", {
+                    "name": function () {
+                        return "duanhaochen";
+                    },
+                    "text": "水浒传"
+                }, {
+                    success: "成功！",
+                    fail: "失败！",
+                    confirm: "你确定要删除吗？"
+                });
+                btnCtrlTable($(".js-toolbar-look"), $applicationInformationTable, "https://baidu.com", "openWindow", {
+                    "name": function () {
+                        return "duanhaochen";
+                    },
+                    "text": "水浒传"
+                }, {
+                    width: 600,
+                    height: 400,
+                    title: "新窗口"
+                });
+            });

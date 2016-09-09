@@ -1,0 +1,76 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        form.easyui-panel#form(title='资产录入' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 资产类别：
+                    td.eui-formLayout-option
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                    td.textAlign-right 资产名称：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 规格型号：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 配置：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 计量单位：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 数量：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 供应商：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 置够方式：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'" required)
+                    td.textAlign-right 置够时间：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 资产原价值：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 折旧算法：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'" required)
+                    td.textAlign-right 净残值率（%）：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 使用年限：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 资产存放地：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 备注：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+        div.eui-panel-footer
+            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit"], function (common, formSubmit) {
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+            });
+

@@ -1,0 +1,122 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+        style.
+            .pdb td {padding-bottom: 10px;}
+    body
+        form.easyui-panel#form(title='添加供应商' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout#formTable
+                tr
+                    th(colspan='6') 供应商基本信息
+                tr
+                    td.textAlign-right 名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 简码：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                        label.eui-formLabel
+                            input(type='checkbox')
+                            span 外协供应商
+                    td.textAlign-right 曾用名：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 地址：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 电子邮箱：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    th(colspan='6') 供应商其他信息
+                tr
+                    td.textAlign-right 组织机构代码：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 营业执照号：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 税务登记证号：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 机构性质：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 注册资金：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 成立时间：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 法人姓名：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 法人电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 开户行：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 银行账号：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 主营业务：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    th(colspan='4') 联系人信息
+                    td
+                        a.easyui-linkbutton#formAdd(data-options="iconCls: 'icon-add'") 添加
+                tbody.contacInformation
+                    tr
+                        td.textAlign-right 主联系人：
+                        td
+                            label.eui-formLabel
+                                input(type='radio' name='ContactType')
+                        td.textAlign-right 姓名：
+                        td
+                            input.easyui-textbox.eui-formComponent(type='text')
+                    tr
+                        td.textAlign-right 职务：
+                        td
+                            input.easyui-textbox.eui-formComponent(type='text')
+                        td.textAlign-right 电话：
+                        td
+                            input.easyui-textbox.eui-formComponent(type='text')
+                    tr.pdb
+                        td.textAlign-right 传真：
+                        td
+                            input.easyui-textbox.eui-formComponent(type='text')
+                        td.textAlign-right 邮箱：
+                        td
+                            input.easyui-textbox.eui-formComponent(type='text')
+                        td
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-cancel'") 删除
+
+        div.eui-panel-footer
+            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "../../js/modules/addContacInformation.js"], function (common, formSubmit, addContacInformation) {
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                addContacInformation();
+            });
+
+

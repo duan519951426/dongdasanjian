@@ -1,0 +1,121 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        // 查询
+        form.eui-queryBox.clearfix#form
+            div.eui-queryBox-left
+                span.eui-queryBox-group
+                    |名称：
+                    input.easyui-textbox.eui-formComponent#ceshi1(type='text')
+                span.eui-queryBox-group
+                    |营业担当：
+                    input.easyui-textbox.eui-formComponent#ceshi2(type='text')
+                span.eui-queryBox-group
+                    |主联系人：
+                    input.easyui-textbox.eui-formComponent#ceshi3(type='text')
+                span.eui-queryBox-group
+                    |客户联系人：
+                    input.easyui-textbox.eui-formComponent#ceshi4(type='text')
+                span.eui-queryBox-group
+                    |约定编码：
+                    input.easyui-textbox.eui-formComponent#ceshi5(type='text')
+            div.eui-queryBox-right
+                a.easyui-linkbutton#formQuery(data-options="iconCls: 'icon-search'") 查询
+                a.easyui-linkbutton#formReset(data-options="iconCls: 'icon-clear'") 重置
+        // 数据
+        table#table(style='width: 100%;' data-options="toolbar: '#toolbar-all'")
+            thead(data-options="frozen: true")
+                tr
+                    th(data-options="field: 'f1', width: '5%'") 序号
+                    th(data-options="field: 'f2', width: '10%'") 客户名称
+            thead
+                tr
+                    th(data-options="field: 'f3', width: '10%'") 客户电话
+                    th(data-options="field: 'f4', width: '20%'") 地址
+                    th(data-options="field: 'f5', width: '10%'") 负责部门
+                    th(data-options="field: 'f5', width: '10%'") 主联系人
+                    th(data-options="field: 'f5', width: '10%'") 客户性质
+                    th(data-options="field: 'f5', width: '10%'") 是否上市
+                    th(data-options="field: 'f5', width: '10%'") 客户来源
+                    th(data-options="field: 'f5', width: '10%'") 客户状态
+                    th(data-options="field: 'f5', width: '10%'") 营业担当
+                    th(data-options="field: 'f5', width: '10%'") 法人代表
+                    th(data-options="field: 'f5', width: '10%'") 注册资金
+                    th(data-options="field: 'f5', width: '10%'") 开户银行
+                    th(data-options="field: 'f5', width: '10%'") 银行账号
+                    th(data-options="field: 'f5', width: '10%'") 税务登记号
+                    th(data-options="field: 'f5', width: '10%'") 企业账号
+        // 工具栏
+        div.display-none
+            // 全部
+            div#toolbar-all
+                a.easyui-linkbutton#toolbar-all-look(data-options="iconCls:'icon-search', plain:true") 查看
+                a.easyui-linkbutton#toolbar-all-edit(data-options="iconCls:'icon-edit', plain:true") 修改
+                a.easyui-linkbutton(href='#', data-options="plain:true") 添加联系人
+                a.easyui-linkbutton(href='#', data-options="plain:true") 发票开据
+                a.easyui-linkbutton(href='#', data-options="plain:true") 催款
+                a.easyui-linkbutton(href='./客户管理-客户管理-添加客户.html', data-options="iconCls: 'icon-add', plain:true") 添加客户
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid", "formQuery", "formReset", "btnCtrlTable"], function(common, initDatagrid, formQuery, formReset, btnCtrlTable){
+                var $table = $("#table");
+                var $btnLook = $("#toolbar-all-look"),
+                    $btnedit = $("#toolbar-all-edit");
+                // 表格初始化
+                initDatagrid($table, {
+                    "look": $btnLook,
+                    "del": $btnedit
+                });
+                // 按钮点击事件
+                btnCtrlTable($btnedit, $table, "https://baidu.com", "openWindow", {
+                    "name": function () {
+                        return "duanhaochen";
+                    },
+                    "text": "水浒传"
+                }, {
+                    width: 600,
+                    height: 400,
+                    title: "新窗口"
+                });
+                btnCtrlTable($btnLook, $table, "https://baidu.com", "openWindow", {
+                    "name": function () {
+                        return "duanhaochen";
+                    },
+                    "text": "水浒传"
+                }, {
+                    width: 600,
+                    height: 400,
+                    title: "新窗口"
+                });
+                // 查询
+                formQuery($("#formQuery"), $table, "http://127.0.0.1:10086/data2", {
+                    "ceshi1": function(){
+                        return $("#ceshi1").val();
+                    },
+                    "ceshi2": function (){
+                        return $("#ceshi2").val();
+                    },
+                    "ceshi3": function (){
+                        return $("#ceshi3").val();
+                    },
+                    "ceshi4": function (){
+                        return $("#ceshi4").val();
+                    },
+                    "ceshi5": function (){
+                        return $("#ceshi5").val();
+                    },
+                    "etc": "hello"
+                });
+                // 重置
+                formReset($("#formReset"), $("#form"));
+            });
+

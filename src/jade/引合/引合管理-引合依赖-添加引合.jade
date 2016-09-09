@@ -1,0 +1,208 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        form.easyui-panel#form(title='添加引合' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    th(colspan='6') 基本信息
+                tr
+                    td.textAlign-right 客户名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 客户设备名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 数量：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text')
+                        select.easyui-combobox(style='width: 50px;' data-options="editable: false")
+                            option 式
+                            option 台
+                            option 套
+                tr
+                    td.textAlign-right 引合等级：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                            option AA
+                            option AB
+                            option BA
+                            option BB
+                    td.textAlign-right 生效日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
+                    td.textAlign-right 营业担当：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 推荐日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
+                    td.textAlign-right 预计签订合同额：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 预计签订日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
+                tr
+                    th(colspan='6') 客户信息
+                tr
+                    td.textAlign-right 客户名称：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 地址：
+                    td(colspan='3')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                tr
+                    td.textAlign-right 用户名称：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 地址：
+                    td(colspan='3')
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 1
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 2
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 3
+                        input.easyui-textbox.eui-formExplain(type='text' required)
+                tr
+                    td.textAlign-right 客户担当：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false")
+                            option 技术
+                            option 采购
+                    td.textAlign-right 电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false")
+                            option 技术
+                            option 采购
+                    td.textAlign-right 电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    th(colspan='6') 客户分析：
+                tr
+                    td.textAlign-right 报价目的：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 项目预算
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 洽谈报价
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 商务谈判
+                    td.textAlign-right 预算合同额：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 低于
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 符合
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 高于
+                tr
+                    td.textAlign-right 客户预算：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 计划订购日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
+                    td.textAlign-right 计划交货日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'" required)
+                tr
+                    th(colspan='6') 报价信息：
+                tr
+                    td.textAlign-right 技术是否同行：
+                    td
+                        label.eui-formLabel
+                            input(type='checkbox' checked)
+                    td.textAlign-right 报价文件提交日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
+                tr
+                    td.textAlign-right 提交客户日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
+                    td.textAlign-right 客户决定日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
+                tr
+                    td.textAlign-right 报价所需文件：
+                    td
+                        input.easyui-combotree.eui-formComponent(data-options="editable: false, multiple: true, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'" required)
+                tr
+                    th.eui-formTitle(colspan='6') 附件上传
+                tr
+                    td(colspan='2')
+                        input.easyui-filebox.eui-formExplain#filebox(data-options="prompt: '未选择任何文件'")
+                    td.textAlign-right 文件名称：
+                    td
+                        input.easyui-textbox.eui-formComponent#filename(type='text')
+                tr
+                    td.textAlign-right 文件类型：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                    td.textAlign-right 说明：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                tr
+                    th(colspan='6') 审批人选择：
+                tr
+                    td.textAlign-right 确认人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 承认人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    th(colspan='6') 具体样式：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+                tr
+                    th(colspan='6') 主要进展与对策：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+                tr
+                    th(colspan='6') 已有设备情况：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+                tr
+                    th(colspan='6') 竞争情况：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+            div.easyui-calendar#calender
+        div.eui-panel-footer
+            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "fileGetName"], function (common, formSubmit, fileGetName) {
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                fileGetName($("#filebox"), $("#filename"));
+            });

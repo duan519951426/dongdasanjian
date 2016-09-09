@@ -1,0 +1,88 @@
+/*** 页面通用样式 ***/
+body, dl, dd, p, pre, hr, figure, h1, h2, h3, h4, h5, h6
+  margin: 0
+th, td, textarea, input, button
+  padding: 0
+ul, ol
+  list-style: none
+a
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+  img
+    border: none\9
+.clearfix
+  *zoom: 1
+  &:after
+    content: '\200B'
+    display: block
+    height: 0
+    clear: both
+body
+  margin: 10px
+  font: 12px '微软雅黑'
+  background-color: #fff
+
+/* 某些单独提出来的样式 */
+.display-none
+  display: none
+.textAlign-right
+  text-align: right
+.fontSize-zero
+  font-size: 0
+
+/* 面板尾部 */
+.eui-panel-footer
+  padding: 10px
+  text-align: center
+
+/* 用于表单页布局 */
+.eui-formLayout
+  margin: 0 auto
+  border-spacing: 12px 10px
+  table-layout: fixed
+  th
+    font-size: 14px
+.eui-formTitle
+  padding: 25px 0 0
+.eui-formLayout-option
+  min-width: 200px
+
+/* 表单input和select宽度170 */
+.eui-formComponent
+  width: 170px
+.eui-formExplain
+  width: 260px
+/* 表单radio和checkbox样式，class给label */
+.eui-formLabel
+  margin-right: 5px
+  input[type='checkbox'], input[type='radio']
+    width: 14px
+    height: 14px
+    margin-right: 3px
+    vertical-align: -2px
+  span
+    font-size: 12px
+
+/* 查询 */
+.eui-queryBox
+  padding-bottom: 10px
+.eui-queryBox-left
+  float: left
+.eui-queryBox-right
+  float: right
+.eui-queryBox-group
+  display: inline-block
+  margin-right: 5px
+.eui-queryBox-col
+  margin-bottom: 10px
+
+/* 表单扩展 */
+.eui-datagrid-view-more // 表单点击加载更多
+  width: 14px
+  height: 14px
+  border: 1px solid #000
+  font: 12px simsun
+  background-color: #fff
+  color: #000
+  outline: none

@@ -1,0 +1,144 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        form.easyui-panel#form(title='添加客户' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    th(colspan='6') 基本信息
+                tr
+                    td.textAlign-right 客户名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 负责部门：
+                    td.eui-formLayout-option
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                    td.textAlign-right 客户性质：
+                    td.eui-formLayout-option
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                tr
+                    td.textAlign-right 客户来源：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                    td.textAlign-right 是否上市：
+                    td.fontSize-zero
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 已上市
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 未上市
+                    td.textAlign-right 客户状态：
+                    td.fontSize-zero
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 发展中
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 活跃中
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 流失中
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 已流失
+                tr
+                    td.textAlign-right 营业担当：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 客户传真：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 客户电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 客户邮编：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 客户网址：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 客户邮箱：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 客户地址：
+                    td(colspan='3')
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 1
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 2
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 3
+                        input.easyui-textbox.eui-formExplain(type='text' required)
+                    td.textAlign-right 法人代表：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 注册资金：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    th.eui-formTitle(colspan='6') 审批人选择
+                tr
+                    td.textAlign-right 确认人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 承认人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    th.eui-formTitle(colspan='6') 附件上传
+                tr
+                    td(colspan='2')
+                        input.easyui-filebox.eui-formExplain#filebox(data-options="prompt: '未选择任何文件'")
+                    td.textAlign-right 文件名称：
+                    td
+                        input.easyui-textbox.eui-formComponent#filename(type='text')
+                tr
+                    td.textAlign-right 文件类型：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                    td.textAlign-right 说明：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                tr
+                    th.eui-formTitle(colspan='6') 其他信息
+                tr
+                    td.textAlign-right 开户银行：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 银行账号：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 税务登记号：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 企业字号：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 备注：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+        div.eui-panel-footer
+            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "fileGetName"], function(common, formSubmit, fileGetName){
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                fileGetName($("#filebox"), $("#filename"));
+            });

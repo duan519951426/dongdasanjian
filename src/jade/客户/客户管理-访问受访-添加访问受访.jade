@@ -1,0 +1,117 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        form.easyui-panel#form(title='添加访问受访' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    th(colspan='6') 基本信息
+                tr
+                    td.textAlign-right 客户名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' data-options="required: true")
+                    td.textAlign-right 引合编码：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 访问方式：
+                    td.eui-formLayout-option.fontSize-zero
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 访问
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 来访
+                tr
+                    td.textAlign-right 出访人员：
+                    td
+                        input.easyui-combotree.eui-formComponent(data-options="editable: false, multiple: true, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                    td.textAlign-right 会见人员：
+                    td(colspan='3')
+                        input.easyui-combotree.eui-formComponent#huijianrenyuan(data-options="editable: false, multiple: true, url: 'http://127.0.0.1:10086/combobox', method: 'GET'")
+                        |&nbsp;&nbsp;&nbsp;&nbsp;
+                        a.easyui-tooltip(title='请用","或"，"分割名字')
+                            input.easyui-textbox.eui-formComponent#huijianrenyuan-new(type='text')
+                        a.easyui-linkbutton#huijianrenyuan-add(data-options="iconCls: 'icon-add'")
+                tr
+                    td.textAlign-right 会见开始时间：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 会见结束时间：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 会见地址：
+                    td(colspan='3')
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 1
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 2
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 3
+                        input.easyui-textbox.eui-formExplain(type='text' required)
+                tr
+                    th.eui-formTitle(colspan='6') 相关信息
+                tr
+                    td.textAlign-right 项目状态：
+                    td.fontSize-zero(colspan='2')
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 洽谈中
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 逸注
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 辞退
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 受注
+                tr
+                    td.textAlign-right 录入人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' value='名字' required readonly)
+                    td.textAlign-right 制作人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 访问目的：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                tr
+                    td.textAlign-right 推进事项：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                tr
+                    th.eui-formTitle(colspan='6') 附件上传
+                tr
+                    td(colspan='2')
+                        input.easyui-filebox.eui-formExplain#filebox(data-options="prompt: '未选择任何文件'")
+                    td.textAlign-right 文件名称：
+                    td
+                        input.easyui-textbox.eui-formComponent#filename(type='text')
+                tr
+                    td.textAlign-right 文件类型：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                    td.textAlign-right 说明：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+        div.eui-panel-footer
+            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "fileGetName", "../../js/modules/combotreeAddOptions.js"], function(common, formSubmit, fileGetName, combotreeAddOptions){
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                fileGetName($("#filebox"), $("#filename"));
+                combotreeAddOptions($("#huijianrenyuan"), $("#huijianrenyuan-new"), $("#huijianrenyuan-add"));
+            });

@@ -1,0 +1,90 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        // 查询
+        form.eui-queryBox.clearfix#form
+            div.eui-queryBox-col.clearfix
+                div.eui-queryBox-left
+                    span.eui-queryBox-group
+                        |引合编码：
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    span.eui-queryBox-group
+                        |客户名称：
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    span.eui-queryBox-group
+                        |客户设备名称：
+                        input.easyui-textbox.eui-formComponent(type='text')
+            div.clearfix
+                div.eui-queryBox-left
+                    span.eui-querybox-group
+                        |引合状态：
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                            option 洽谈中
+                            option 逸注
+                            option 取消
+                            option 受注
+                    span.eui-querybox-group
+                        label.eui-formLabel
+                            input(type='checkbox')
+                            span 是否推荐
+                    span.eui-querybox-group
+                        |发行年度：
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                            option 无
+                            option 2016
+                div.eui-queryBox-right
+                    a.easyui-linkbutton#formQuery(data-options="iconCls: 'icon-search'") 查询
+                    a.easyui-linkbutton#formReset(data-options="iconCls: 'icon-clear'") 重置
+        // 数据
+        table#table(style='width: 100%;')
+            thead(data-options="frozen: true")
+                tr
+                    th(data-options="field: 'f1', width: '5%'") 序号
+                    th(data-options="field: 'f2', width: '10%'") 引合编码
+                    th(data-options="field: 'f2', width: '10%'") 客户名称
+                    th(data-options="field: 'f2', width: '10%'") 设备名称
+            thead
+                tr
+                    th(data-options="field: 'f3', width: '10%'") 等级
+                    th(data-options="field: 'f3', width: '10%'") 推荐引合
+                    th(data-options="field: 'f4', width: '10%'") 数量
+                    th(data-options="field: 'f5', width: '10%'") 方案名称
+                    th(data-options="field: 'f5', width: '10%'") 方案版本
+                    th(data-options="field: 'f5', width: '10%'") 预签合同额
+                    th(data-options="field: 'f5', width: '20%'") 预签日期
+                    th(data-options="field: 'f5', width: '10%'") 计划交货日期
+                    th(data-options="field: 'f5', width: '10%'") 报价金额
+                    th(data-options="field: 'f5', width: '10%'") 报价版本
+                    th(data-options="field: 'f5', width: '10%'") 预算成本
+                    th(data-options="field: 'f5', width: '10%'") 利润率
+                    th(data-options="field: 'f5', width: '10%'") 营业担当
+                    th(data-options="field: 'f5', width: '10%'") 技术担当
+                    th(data-options="field: 'f5', width: '10%'") 制造担当
+                    th(data-options="field: 'f5', width: '10%'") 状态
+                    th(data-options="field: 'f5', width: '20%'") 客户预算
+                    th(data-options="field: 'f5', width: '10%'") 生效日期
+                    th(data-options="field: 'f5', width: '10%'") 订购日期
+                    th(data-options="field: 'f5', width: '10%'") 报价文件提交日期
+                    th(data-options="field: 'f5', width: '10%'") 提交客户日期
+                    th(data-options="field: 'f5', width: '10%'") 客户担当
+                    th(data-options="field: 'f5', width: '10%'") 客户担当电话
+                    th(data-options="field: 'f5', width: '10%'") 文件下载
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid", "formQuery", "formReset"], function (common, initDatagrid, formQuery, formReset){
+                var $table = $("#table");
+                initDatagrid($table);
+                // 查询
+                formQuery($("#formQuery"), $table, "http://127.0.0.1:10086/data1");
+                // 重置
+                formReset($("#formReset"), $("#form"));
+            });

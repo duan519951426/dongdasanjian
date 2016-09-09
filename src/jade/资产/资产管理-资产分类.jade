@@ -1,0 +1,45 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        // 数据
+        table#table(style='width: 100%;' data-options="toolbar: '#toolbar-all'")
+            thead
+                tr
+                    th(data-options="field: 'f1', width: '10%'") 编码
+                    th(data-options="field: 'f2', width: '20%'") 名称
+                    th(data-options="field: 'f3', width: '10%'") 使用年限（月）
+                    th(data-options="field: 'f3', width: '10%'") 净残值率(%)
+                    th(data-options="field: 'f4', width: '10%'") 计量单位
+                    th(data-options="field: 'f5', width: '15%'") 转回减值准备
+                    th(data-options="field: 'f5', width: '15%'") 当月计提折旧
+                    th(data-options="field: 'f5', width: '10%'") 状态
+        // 工具栏
+        div.display-none
+            // 全部
+            div#toolbar-all
+                a.easyui-linkbutton#toolbar-all-search(data-options="iconCls:'icon-search', plain:true") 查询
+                a.easyui-linkbutton#toolbar-all-clear(data-options="iconCls:'icon-clear', plain:true") 清除
+                a.easyui-linkbutton(href='./客户管理-联系人管理-添加联系人.html' data-options="iconCls:'icon-add', plain:true") 添加一级分类
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid"], function(common, initDatagrid){
+                var $table = $("#table");
+                var $btnSearch = $("#toolbar-all-search"),
+                    $btnClear = $("#toolbar-all-clear");
+                // 表格初始化
+                initDatagrid($table, {
+                    "look": $btnSearch,
+                    "del": $btnClear
+                });
+
+
+            });

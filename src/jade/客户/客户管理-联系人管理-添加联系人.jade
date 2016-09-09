@@ -1,0 +1,107 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        form.easyui-panel#form(title='添加联系人' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    th(colspan='6') 基本信息
+                tr
+                    td.textAlign-right 联系人姓名：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                        label.eui-formLabel
+                            input(type='checkbox')
+                            span 主联系人
+                    td.textAlign-right 客户名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 联系人部门：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td
+                tr
+                    td.textAlign-right 联系人性别：
+                    td.fontsize-zero
+                        label.eui-formlabel
+                            input(type='radio')
+                            span 男
+                        label.eui-formlabel
+                            input(type='radio')
+                            span 女
+                    td.textAlign-right 联系人职务：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textalign-right 联系人状态：
+                    td.fontsize-zero
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 离职
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 在职
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 休假
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 外出
+                tr
+                    td.textAlign-right 录入人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' value='段昊辰' required readonly)
+                tr
+                    th(colspan='6') 其他信息
+                tr
+                    td.textAlign-right 传真：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 移动电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' data-options="validType: 'phone'")
+                    td.textAlign-right 办公电话：
+                    td
+                        a.easyui-tooltip(title='xxx-xxxxxxxx或xxxx-xxxxxxxx')
+                            input.easyui-textbox.eui-formComponent(type='text' data-options="validType: 'tel'" required)
+                tr
+                    td.textAlign-right QQ：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 电子邮箱：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' data-options="validType: 'email'")
+                    td.textAlign-right 微信：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 地址：
+                    td(colspan='3')
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 1
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 2
+                        select.easyui-combobox(style='width: 80px;' data-options="editable: false" required)
+                            option 3
+                        input.easyui-textbox.eui-formExplain(type='text' required)
+                tr
+                    th(colspan='6') 备注
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+        div.eui-panel-footer
+            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "validForm", "formSubmit"], function(common, validForm, formSubmit){
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+            });
