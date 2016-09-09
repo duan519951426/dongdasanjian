@@ -1,0 +1,85 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        form.easyui-panel#form(title='添加售后书' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout#formTable
+                tr
+                    th(colspan='6') 客户信息
+                tr
+                    td.textAlign-right 工程编号：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 客户名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 工程名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 客户担当-车间：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 传真：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 客户担当-设备：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 传真：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    th(colspan='6') 设备信息
+                tr
+                    td.textAlign-right 设备状态：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 使用中
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 未使用
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 其他
+                    td.textAlign-right 验收时间：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 是否质保期内：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 保质期内
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 保质期外
+                tr
+                    td.textAlign-right 配置与参数：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;' required)
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+            // js
+            script(src='../../js/common/require.2.2.0.min.js')
+            script(src='../../js/common/require.config.js')
+            script.
+                require(["common", "formSubmit", "../../js/modules/addContacInformation.js"], function (common, formSubmit, addContacInformation) {
+                    formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                });
