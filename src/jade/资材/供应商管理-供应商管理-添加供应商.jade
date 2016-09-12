@@ -39,7 +39,7 @@ html
                     td
                         input.easyui-textbox.eui-formComponent(type='text')
                 tr
-                    th(colspan='6') 供应商其他信息
+                    th.eui-formTitle(colspan='6') 供应商其他信息
                 tr
                     td.textAlign-right 组织机构代码：
                     td
@@ -78,8 +78,8 @@ html
                     td
                         input.easyui-textbox.eui-formComponent(type='text')
                 tr
-                    th(colspan='4') 联系人信息
-                    td
+                    th.eui-formTitle(colspan='4') 联系人信息
+                    td.eui-formTitle
                         a.easyui-linkbutton#formAdd(data-options="iconCls: 'icon-add'") 添加
                 tbody.contacInformation
                     tr
@@ -106,10 +106,9 @@ html
                             input.easyui-textbox.eui-formComponent(type='text')
                         td
                             a.easyui-linkbutton(data-options="iconCls: 'icon-cancel'") 删除
-
-        div.eui-panel-footer
-            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
-            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
         // js
         script(src='../../js/common/require.2.2.0.min.js')
         script(src='../../js/common/require.config.js')

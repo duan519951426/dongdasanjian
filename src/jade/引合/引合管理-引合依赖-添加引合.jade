@@ -52,7 +52,7 @@ html
                     td
                         input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
                 tr
-                    th(colspan='6') 客户信息
+                    th.eui-formTitle(colspan='6') 客户信息
                 tr
                     td.textAlign-right 客户名称：
                     td
@@ -94,7 +94,7 @@ html
                     td
                         input.easyui-textbox.eui-formComponent(type='text')
                 tr
-                    th(colspan='6') 客户分析：
+                    th.eui-formTitle(colspan='6') 客户分析：
                 tr
                     td.textAlign-right 报价目的：
                     td
@@ -129,7 +129,7 @@ html
                     td
                         input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'" required)
                 tr
-                    th(colspan='6') 报价信息：
+                    th.eui-formTitle(colspan='6') 报价信息：
                 tr
                     td.textAlign-right 技术是否同行：
                     td
@@ -165,7 +165,7 @@ html
                     td(colspan='2')
                         input.easyui-textbox.eui-formExplain(type='text')
                 tr
-                    th(colspan='6') 审批人选择：
+                    th.eui-formTitle(colspan='6') 审批人选择：
                 tr
                     td.textAlign-right 确认人：
                     td
@@ -174,30 +174,29 @@ html
                     td
                         input.easyui-textbox.eui-formComponent(type='text' required)
                 tr
-                    th(colspan='6') 具体样式：
+                    th.eui-formTitle(colspan='6') 具体样式：
                 tr
                     td(colspan='6')
                         input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
                 tr
-                    th(colspan='6') 主要进展与对策：
+                    th.eui-formTitle(colspan='6') 主要进展与对策：
                 tr
                     td(colspan='6')
                         input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
                 tr
-                    th(colspan='6') 已有设备情况：
+                    th.eui-formTitle(colspan='6') 已有设备情况：
                 tr
                     td(colspan='6')
                         input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
                 tr
-                    th(colspan='6') 竞争情况：
+                    th.eui-formTitle(colspan='6') 竞争情况：
                 tr
                     td(colspan='6')
                         input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
             div.easyui-calendar#calender
-        div.eui-panel-footer
-            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
-            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
-
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
         // js
         script(src='../../js/common/require.2.2.0.min.js')
         script(src='../../js/common/require.config.js')

@@ -1,6 +1,7 @@
 /**
  * 初始化树形表格
  * @$element<object>：表格的$DomElement
+ * @treeField<string>：定义树节点的字段
  * @btn<object>：key 字段，value 对应的按钮DomElement，如果没有该字段，则对应的按钮为禁止使用状态，有该字段，则对应的按钮为可用状态
  */
 
@@ -15,8 +16,7 @@ define((require, exports, module)=>{
         method: "GET",
         pagination: true,      // 显示分页工具栏
         pageSize: 30,
-        idField: "id",
-        treeField: "name"
+        idField: "id"
     };
 
     // 判断按钮是否禁用
@@ -30,12 +30,13 @@ define((require, exports, module)=>{
     };
 
     // 模块主函数，对外接口
-    const main = ($element, btn)=>{
+    const main = ($element, treeField, btn)=>{
         const o = treegridOptions;
         // 将新参数加入到配置中
         o["onSelect"] = (rowIndex, rowData)=>{
             btnDisable($element, btn, rowIndex, rowData);
         };
+        o["treeField"] = treeField;
         // 初始化表格
         $element.treegrid(o);
         if(btn){

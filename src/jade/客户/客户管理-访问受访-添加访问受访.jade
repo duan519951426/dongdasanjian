@@ -42,10 +42,10 @@ html
                 tr
                     td.textAlign-right 会见开始时间：
                     td
-                        input.easyui-textbox.eui-formComponent(type='text' required)
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calender'" required)
                     td.textAlign-right 会见结束时间：
                     td
-                        input.easyui-textbox.eui-formComponent(type='text' required)
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calender'" required)
                 tr
                     td.textAlign-right 会见地址：
                     td(colspan='3')
@@ -103,9 +103,10 @@ html
                     td.textAlign-right 说明：
                     td(colspan='2')
                         input.easyui-textbox.eui-formExplain(type='text')
-        div.eui-panel-footer
-            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
-            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+            div.easyui-calendar#calender
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
         // js
         script(src='../../js/common/require.2.2.0.min.js')
         script(src='../../js/common/require.config.js')

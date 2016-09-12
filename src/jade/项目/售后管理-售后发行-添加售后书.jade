@@ -44,7 +44,7 @@ html
                     td
                         input.easyui-textbox.eui-formComponent(type='text' required)
                 tr
-                    th(colspan='6') 设备信息
+                    th.eui-formTitle(colspan='6') 设备信息
                 tr
                     td.textAlign-right 设备状态：
                     td
@@ -59,7 +59,7 @@ html
                             span 其他
                     td.textAlign-right 验收时间：
                     td
-                        input.easyui-textbox.eui-formComponent(type='text' required)
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calender'" required)
                     td.textAlign-right 是否质保期内：
                     td
                         label.eui-formLabel
@@ -73,13 +73,80 @@ html
                 tr
                     td(colspan='6')
                         input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;' required)
+                tr
+                    th.eui-formTitle(colspan='6') 其它
+                tr
+                    td.textAlign-right 服务方式：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 传真或邮件
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 电话
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 现场服务
+                    td.textAlign-right 分析报告：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 有
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 无
+                    td.textAlign-right 现场报告：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 有
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 无
+                tr
+                    td.textAlign-right 设备问题反馈：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 设备问题再确认：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 原因分析、处理对策及预案会商：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 处理对策实施及结果：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    th.eui-formTitle(colspan='6') 回览人员选择
+                tr
+                    td.textAlign-right 营业担当：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 制造部：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 技术部：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 营业部：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 副总经理：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 总经理：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+            div.easyui-calendar#calender
             div.eui-panel-footer
                 a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
                 a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
-            // js
-            script(src='../../js/common/require.2.2.0.min.js')
-            script(src='../../js/common/require.config.js')
-            script.
-                require(["common", "formSubmit", "../../js/modules/addContacInformation.js"], function (common, formSubmit, addContacInformation) {
-                    formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
-                });
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "../../js/modules/addContacInformation.js"], function (common, formSubmit, addContacInformation) {
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+            });
