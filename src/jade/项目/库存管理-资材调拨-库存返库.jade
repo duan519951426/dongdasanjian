@@ -1,0 +1,96 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        form.easyui-panel#form(title='资材返库' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 约定编码：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 出库编码：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent#input(type='text' required)
+                    td.textAlign-right 出库明细编码：
+                    td.eui-formLayout-option
+                        select.easyui-combogrid.eui-formComponent#combogrid(data-options="editable: false" required)
+                tr
+                    td.textAlign-right 出库批次明细编码：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 资材名称：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 资材型号：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 供应商：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 库存批次：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 数量：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 可返库数量：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 返库原因：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'" required)
+                tr
+                    td.textAlign-right 说明：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "inputChangeCombogrid"], function (common, formSubmit, inputChangeCombogrid) {
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                inputChangeCombogrid($("#input"), $("#combogrid"), "http://127.0.0.1:10086/data1", {}, {
+                    idField: "f1",
+                    textField: "f2",
+                    columns: [[
+                        {
+                            field: "f1",
+                            title: "资材名称",
+                            width: 60
+                        },
+                        {
+                            field: "f2",
+                            title: "资材型号",
+                            width: 100
+                        },
+                        {
+                            field: "f3",
+                            title: "数量",
+                            width: 120
+                        },
+                        {
+                            field: "f4",
+                            title: "单位",
+                            width: 100
+                        },
+                        {
+                            field: "f5",
+                            title: "金额",
+                            width: 100
+                        }
+                    ]]
+                });
+            });

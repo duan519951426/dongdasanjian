@@ -3,27 +3,20 @@
  * @$tree：点击的树
  * @$table：刷新的表格
  * @url<string>：刷新地址
- * @obj<object>：参数和方法
+ * @dataFun<object>：参数和方法
  *   key：参数名
  *   value：方法或者字符串
  */
 
 define((require, exports, module)=>{
-    const main = ($tree, $table, url, obj)=>{
-        const data = (obj, url)=>{
-            let [x, i] = ["", 0];
-            const m = /^.+\?.*$/.test(url) === true ? (/^.+\?$/.test(url) ? "" : "&") : "?";
-            $.each(obj, function(key, value){
-                x += `${i++ != 0 ? "&" : m}${key}=${typeof value === "function" ? value() : value}`;
-            });
-            return x;
-        };
+    const data2 = require("data2");
+    const main = ($tree, $table, url, dataFun)=>{
         function resTable(node){
             if(!node.children){
-                obj.nodeId = node.id ? node.id : "";
-                obj.nodeText = node.text ? node.text : "";
+                dataFun.nodeId = node.id ? node.id : "";
+                dataFun.nodeText = node.text ? node.text : "";
                 $table.datagrid({
-                    url: url + data(obj, url)
+                    url: data2.string(dataFun, url)
                 });
             }
         }

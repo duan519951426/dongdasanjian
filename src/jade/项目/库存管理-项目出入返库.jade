@@ -42,19 +42,22 @@ html
                     a.easyui-linkbutton#formQuery(data-options="iconCls: 'icon-search'") 查询
                     a.easyui-linkbutton#formReset(data-options="iconCls: 'icon-clear'") 重置
         // 数据
-        table#table(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data2'")
+        table#table(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data2', toolbar: '#toolbar-all'")
             thead
                 tr
-                    th(data-options="field: 'f1', width: '20%'") 售后书编码
-                    th(data-options="field: 'f2', width: '10%'") 工程编号
-                    th(data-options="field: 'f3', width: '20%'") 工程名称
-                    th(data-options="field: 'f4', width: '30%'") 客户名称
-                    th(data-options="field: 'f5', width: '20%'") 处理方式
+                    th(data-options="field: 'f1', width: '25%'") 约定编码
+                    th(data-options="field: 'f2', width: '25%'") 入库金额
+                    th(data-options="field: 'f3', width: '25%'") 出库金额
+                    th(data-options="field: 'f4', width: '25%'") 返库金额
+        // 工具栏
+        div.display-none
+            div#toolbar-all
+                a.easyui-linkbutton(href='./售后管理-售后发行-添加售后书.html' data-options="iconCls:'icon-search', plain:true") 查看出、入、返库单
         // js
         script(src='../../js/common/require.2.2.0.min.js')
         script(src='../../js/common/require.config.js')
         script.
-            require(["common", "initDatagrid", "formQuery", "formReset"], function(common, initDatagrid, formQuery, formReset){
+            require(["common", "initDatagrid", "btnCtrlTable", "formQuery", "formReset"], function(common, initDatagrid, btnCtrlTable, formQuery, formReset){
                 var $table = $("#table");
                 initDatagrid($table);
                 // 查询

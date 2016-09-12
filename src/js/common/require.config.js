@@ -13,7 +13,9 @@ require.config({
 
         /* 插件 */
         "deferr": "./modules/deferr",            // 延时加载
+        "data2": "./modules/data2",               // 数据处理
         "fileGetName": "./modules/fileGetName", // 文件上传
+        "inputChangeCombogrid": "./modules/inputChangeCombogrid", // 当input的值改变时刷新combogrid的数据
 
         /* 数据网格的操作 */
         "initDatagrid": "./modules/datagrid/initDatagrid",                   // 初始化分页数据处理的表格

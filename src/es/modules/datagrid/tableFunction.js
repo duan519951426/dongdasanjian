@@ -7,24 +7,7 @@
  */
 
 define((require, exports, module)=>{
-
-    // 获取数据
-    const data2Json = (dataFun)=>{
-        const x = {};
-        $.each(dataFun, function(key, value){
-            x[key] = typeof value === "function" ? value() : value;
-        });
-        return x;
-    };
-
-    const data2String = (dataFun, url)=>{
-        let [x, i] = [""];
-        const m = /^.+\?.*$/.test(url) === true ? (/^.+\?$/.test(url) ? "" : "&") : "?";
-        $.each(dataFun, function(key, value){
-            x += `${i++ != 0 ? "&" : m}${key}=${typeof value === "function" ? value() : value}`;
-        });
-        return x;
-    };
+    const data2 = require("data2");
 
     /* 各种操作方法 */
     const fun = {};
@@ -41,7 +24,7 @@ define((require, exports, module)=>{
                     url: url, // 地址
                     async: false, // 异步
                     cache: false, // 缓存
-                    data: dataFun != null ? data2Json(dataFun) : {}, // 数据
+                    data: dataFun != null ? data2.object(dataFun) : {}, // 数据
                     dataType: "json", // 返回数据类型
                     error: (request, error, object)=>{
                         console.log(request, error, object);
@@ -65,7 +48,7 @@ define((require, exports, module)=>{
     // options.height 窗口的高度
     // options.title  窗口的标题
     fun["openWindow"] = (url, dataFun, options, callback)=>{
-        const $window = $(`<div style="position: relative;"><iframe src="${url + (dataFun != null ? data2String(dataFun) : "")}" style="width: 100%;height: 100%;border: none;overflow: auto;"></iframe></div>`)
+        const $window = $(`<div style="position: relative;"><iframe src="${(dataFun != null ? data2.string(dataFun, url) : url)}" style="width: 100%;height: 100%;border: none;overflow: auto;"></iframe></div>`)
             .appendTo("body")
             .window({
                 width: options && options.width ? options.width : 600,
@@ -81,7 +64,7 @@ define((require, exports, module)=>{
 
     // 跳转新链接
     fun["newHref"] = (url, dataFun)=>{
-        window.location.href = url + (dataFun != null ? data2String(dataFun, url) : "");
+        window.location.href = dataFun != null ? data2.string(dataFun, url) : url;
     };
 
     // 模块主函数，对外接口
