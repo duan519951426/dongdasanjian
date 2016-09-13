@@ -81,7 +81,7 @@ html
                     th.eui-formTitle(colspan='4') 联系人信息
                     td.eui-formTitle
                         a.easyui-linkbutton#formAdd(data-options="iconCls: 'icon-add'") 添加
-                tbody.contacInformation
+                tbody.information
                     tr
                         td.textAlign-right 主联系人：
                         td
@@ -113,9 +113,9 @@ html
         script(src='../../js/common/require.2.2.0.min.js')
         script(src='../../js/common/require.config.js')
         script.
-            require(["common", "formSubmit", "../../js/modules/addContacInformation.js"], function (common, formSubmit, addContacInformation) {
+            require(["common", "formSubmit", "addInformationTable"], function (common, formSubmit, addInformationTable) {
                 formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
-                addContacInformation();
+                addInformationTable();
             });
 
 

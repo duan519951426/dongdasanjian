@@ -1,0 +1,78 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+    body
+        // 选项卡
+        div.easyui-tabs#easyui-tabs(style='width: 100%;' data-options="tools: '#tab-tools'")
+            div(title='待生成订单资材' style='padding: 10px;')
+                table#table0(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1', toolbar: '#toolbar-all'")
+                    thead
+                        tr
+                            th(data-options="field: 'f1', width: '10%'") 资材名称
+                            th(data-options="field: 'f2', width: '10%'") 规格型号
+                            th(data-options="field: 'f3', width: '10%'") 预算剩余数量
+                            th(data-options="field: 'f4', width: '10%'") 本次提交数量
+                            th(data-options="field: 'f5', width: '10%'") 预算单价
+                            th(data-options="field: 'f6', width: '10%'") 提交单价
+                            th(data-options="field: 'f7', width: '10%'") 供货商
+                            th(data-options="field: 'f8', width: '10%'") 交货地
+                            th(data-options="field: 'f9', width: '10%'") 提交人
+                            th(data-options="field: 'f10', width: '10%'") 提交部门
+            div(title='已生成订单资材' style='padding: 10px;')
+                table#table1(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1'")
+                    thead
+                        tr
+                            th(data-options="field: 'f1', width: '10%'") 已订购资材名称
+                            th(data-options="field: 'f2', width: '10%'") 规格型号
+                            th(data-options="field: 'f3', width: '10%'") 预算剩余数量
+                            th(data-options="field: 'f4', width: '10%'") 已提交数量
+                            th(data-options="field: 'f5', width: '10%'") 预算单价
+                            th(data-options="field: 'f6', width: '10%'") 提交单价
+                            th(data-options="field: 'f7', width: '5%'") 订购单价
+                            th(data-options="field: 'f8', width: '10%'") 订购数量
+                            th(data-options="field: 'f9', width: '10%'") 使用库存
+                            th(data-options="field: 'f10', width: '5%'") 供货商
+                            th(data-options="field: 'f11', width: '10%'") 希望到货时间
+            div(title='选型错误清单' style='padding: 10px;')
+                table#table2(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1'")
+                    thead
+                        tr
+                            th(data-options="field: 'f1', width: '15%'") 资材名称
+                            th(data-options="field: 'f2', width: '15%'") 规格型号
+                            th(data-options="field: 'f3', width: '10%'") 提交数量
+                            th(data-options="field: 'f4', width: '15%'") 供货商
+                            th(data-options="field: 'f5', width: '15%'") 希望到货时间
+                            th(data-options="field: 'f6', width: '10%'") 联系人
+                            th(data-options="field: 'f7', width: '10%'") 提交人
+                            th(data-options="field: 'f8', width: '10%'") 订单状态
+        // 选项卡工具栏
+        div#tab-tools
+            a.easyui-linkbutton(data-options="iconCls: 'icon-undo', plain: true") 返回
+        // 工具栏
+        div.display-none
+            div#toolbar-all
+                a.easyui-linkbutton(data-options="iconCls:'icon-document_export', plain:true") 生成订单编辑
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid", "tabsEventListenerFun"], function(common, initDatagrid, tabsEventListenerFun){
+                tabsEventListenerFun($("#easyui-tabs"), [
+                    function(){
+                        initDatagrid($("#table0"));
+                    },
+                    function(){
+                        initDatagrid($("#table1"));
+                    },
+                    function(){
+                        initDatagrid($("#table2"));
+                    }
+                ], false, 0);
+            });
+

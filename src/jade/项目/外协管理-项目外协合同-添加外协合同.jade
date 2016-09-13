@@ -1,0 +1,148 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='renderer' content='webkit')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+        link(href='../../css/common.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/metro/easyui.css' rel='stylesheet')
+        link(href='../../jquery-easyui-1.5/icon.css' rel='stylesheet')
+        style.
+            .pdb td {padding-bottom: 10px;}
+    body
+        form.easyui-panel#form(title='添加外协合同' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout#formTable
+                tr
+                    th(colspan='6') 合同信息
+                tr
+                    td.textAlign-right 约定编码：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 外协合同名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 成本项目分类：
+                    td.eui-formLayout-option
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                tr
+                    td.textAlign-right 外协厂家：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'" required)
+                    td.textAlign-right 外协联系电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 外协联系人：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                tr
+                    td.textAlign-right 合同总金额：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 是否有发票：
+                    td.fontSize-zero
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 是
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 否
+                    td.textAlign-right 发票类型：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                tr
+                    td.textAlign-right 发票金额：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 税率：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                        |%
+                    td.textAlign-right 收票人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 收货日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'" required)
+                    td.textAlign-right 收货地：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    th.eui-formTitle(colspan='6') 合同明细
+                tr
+                    td(colspan='6')
+                        table#table(style='width: 100%;' data-options="url: 'http://127.0.0.1:10086/data1'")
+                            thead(data-options="frozen: true")
+                                tr
+                                    th(data-options="field: 'f1', width: '10%'") 成本划分
+                                    th(data-options="field: 'f2', width: '10%'") 子项目
+                                    th(data-options="field: 'f3', width: '10%'") 型式或规格
+                                    th(data-options="field: 'f4', width: '10%'") 单位
+                            thead
+                                tr
+                                    th(data-options="field: 'f5', width: '10%'") 参考数量
+                                    th(data-options="field: 'f6', width: '10%'") 参考单价
+                                    th(data-options="field: 'f7', width: '10%'") 参考小计
+                                    th(data-options="field: 'f8', width: '10%'") 实际数量
+                                    th(data-options="field: 'f9', width: '10%'") 实际单价
+                                    th(data-options="field: 'f10', width: '10%'") 实际小计
+                                    th(data-options="field: 'f11', width: '10%'") 项目合计金额
+                tr
+                    th.eui-formTitle(colspan='4') 付款条件
+                    td.eui-formTitle
+                        a.easyui-linkbutton#formAdd(data-options="iconCls: 'icon-add'") 添加
+                tbody.information
+                    tr
+                        td.textAlign-right 付款条件	：
+                        td
+                            input.easyui-textbox.eui-formComponent(type='text')
+                        td.textAlign-right 预付比例：
+                        td
+                            input.easyui-textbox.eui-formComponent(type='text')
+                            |%
+                    tr.pdb
+                        td.textAlign-right 预付金额：
+                        td
+                            input.easyui-textbox.eui-formComponent(type='text')
+                        td.textAlign-right 预付日期：
+                        td
+                            input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar:'#calender'")
+                        td
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-cancel'") 删除
+                tr
+                    th.eui-formTitle(colspan='6') 附件上传
+                tr
+                    td(colspan='2')
+                        input.easyui-filebox.eui-formExplain#filebox(data-options="prompt: '未选择任何文件'")
+                    td.textAlign-right 文件名称：
+                    td
+                        input.easyui-textbox.eui-formComponent#filename(type='text')
+                tr
+                    td.textAlign-right 文件类型：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                    td.textAlign-right 说明：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                tr
+                    th.eui-formTitle(colspan='6') 备注
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+        div.easyui-calendar#calender
+        div.eui-panel-footer
+            a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+            a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "fileGetName", "initDatagrid", "addInformationTable"], function(common, formSubmit, fileGetName, initDatagrid, addInformationTable){
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                fileGetName($("#filebox"), $("#filename"));
+                initDatagrid($("#table"));
+                addInformationTable();
+            });
+
+

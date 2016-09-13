@@ -15,6 +15,7 @@ require.config({
         "deferr": "./modules/deferr",            // 延时加载
         "data2": "./modules/data2",               // 数据处理
         "fileGetName": "./modules/fileGetName", // 文件上传
+        "addInformationTable": "./modules/addInformationTable",   // 点击追加新内容
         "inputChangeCombogrid": "./modules/inputChangeCombogrid", // 当input的值改变时刷新combogrid的数据
 
         /* 数据网格的操作 */
