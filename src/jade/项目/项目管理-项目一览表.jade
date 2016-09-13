@@ -1,0 +1,59 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        // 查询
+        form.eui-queryBox.clearfix#form
+            div.eui-queryBox-left
+                span.eui-queryBox-group
+                    |约定编码：
+                    input.easyui-textbox.eui-formComponent(type='text')
+                span.eui-queryBox-group
+                    |客户名称：
+                    input.easyui-textbox.eui-formComponent(type='text')
+                span.eui-queryBox-group
+                    |约定类型：
+                    label.eui-formLabel
+                        input(type='checkbox')
+                        |C
+                    label.eui-formLabel
+                        input(type='checkbox')
+                        |G
+                    label.eui-formLabel
+                        input(type='checkbox')
+                        |P
+                span.eui-querybox-group
+                    | 发行年度：
+                    select.easyui-combobox.eui-formComponent(data-options="editable: false")
+            div.eui-queryBox-right
+                a.easyui-linkbutton#formQuery(data-options="iconCls: 'icon-search'") 查询
+                a.easyui-linkbutton#formReset(data-options="iconCls: 'icon-clear'") 重置
+        // 数据
+        table#table(style='width: 100%;')
+            thead
+                tr
+                    th(data-options="field: 'f1', width: '5%'") 序号
+                    th(data-options="field: 'f2', width: '10%'") 项目编号
+                    th(data-options="field: 'f3', width: '10%'") 项目名称
+                    th(data-options="field: 'f4', width: '10%'") 客户名称
+                    th(data-options="field: 'f5', width: '5%'") 数量
+                    th(data-options="field: 'f6', width: '5%'") 状态
+                    th(data-options="field: 'f7', width: '10%'") 签定日期
+                    th(data-options="field: 'f8', width: '10%'") 计划交货期
+                    th(data-options="field: 'f9', width: '10%'") 验收日期
+                    th(data-options="field: 'f10', width: '10%'") 报价成本
+                    th(data-options="field: 'f11', width: '10%'") 报价金额
+                    th(data-options="field: 'f12', width: '5%'") 报价利润
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid", "formQuery", "formReset"], function (common, initDatagrid, formQuery, formReset) {
+                var $table = $("#table");
+                initDatagrid($table);
+                // 查询
+                formQuery($("#formQuery"), $table, "http://127.0.0.1:10086/data1");
+                // 重置
+                formReset($("#formReset"), $("#form"));
+            });
