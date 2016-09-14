@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        // 查询
+        form.eui-queryBox.clearfix#form
+            div.eui-queryBox-left
+                span.eui-queryBox-group
+                    input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calendar'")
+                    span 至
+                    input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calendar'")
+            div.easyui-calendar#calendar
+            div.eui-queryBox-right
+                a.easyui-linkbutton#formQuery(data-options="iconCls: 'icon-search'") 查询
+                a.easyui-linkbutton#formReset(data-options="iconCls: 'icon-application_put'") 导出
+        // 数据
+        table#table(style='width: 100%;')
+            thead
+                tr
+                    th(data-options="field: 'f1', width: '5%'") 申请人
+                    th(data-options="field: 'f2', width: '5%'") 审批人
+                    th(data-options="field: 'f3', width: '10%'") 出差地
+                    th(data-options="field: 'f4', width: '10%'") 访问地/相关者
+                    th(data-options="field: 'f5', width: '5%'") 访问事宜
+                    th(data-options="field: 'f6', width: '10%'") 住宿地/其他
+                    th(data-options="field: 'f7', width: '5%'") 出差类型
+                    th(data-options="field: 'f8', width: '10%'") 出差开始时间
+                    th(data-options="field: 'f9', width: '10%'") 出差结束时间
+                    th(data-options="field: 'f10', width: '10%'") 计划上班日
+                    th(data-options="field: 'f11', width: '10%'") 返回时间
+                    th(data-options="field: 'f12', width: '10%'") 上班时间
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid", "formQuery", "formReset"], function(common, initDatagrid, formQuery, formReset){
+                var $table = $("#table");
+                // 表格初始化
+                initDatagrid($table);
+                formQuery($("#formQuery"), $table, "http://127.0.0.1:10086/data2");
+                // 重置
+                formReset($("#formReset"), $("#form"));
+            });
