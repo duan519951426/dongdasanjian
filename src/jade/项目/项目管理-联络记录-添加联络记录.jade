@@ -1,0 +1,95 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        form.easyui-panel#form(title='添加联络记录' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    th(colspan='6') 基本信息
+                tr
+                    td.textAlign-right 约定编码：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 对象类别：
+                    td.eui-formLayout-option.fontSize-zero
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 客户
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 供应商
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 现场
+                    td.textAlign-right 经办日期：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                tr
+                    td.textAlign-right 联络日期：
+                    td
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calendar'" required)
+                    td.textAlign-right 接洽人员：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                    td.textAlign-right 通知人员：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                tr
+                    td.textAlign-right 影响范围：
+                    td.eui-formLayout-option.fontSize-zero(colspan='2')
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 无
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 大
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 中
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 小
+                tr
+                    th.eui-formTitle(colspan='6') 影响内容
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+                tr
+                    th.eui-formTitle(colspan='6') 审批人选择
+                tr
+                    td.textAlign-right 确认人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 承认人：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    th.eui-formTitle(colspan='6') 附件上传
+                tr
+                    td(colspan='2')
+                        input.easyui-filebox.eui-formExplain#filebox(data-options="prompt: '未选择任何文件'")
+                    td.textAlign-right 文件名称：
+                    td
+                        input.easyui-textbox.eui-formComponent#filename(type='text')
+                tr
+                    td.textAlign-right 文件类型：
+                    td
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false")
+                    td.textAlign-right 说明：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+
+            div.easyui-calendar#calendar
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+            // js
+            script(src='../../js/common/require.2.2.0.min.js')
+            script(src='../../js/common/require.config.js')
+            script.
+                require(["common", "formSubmit", "fileGetName"], function (common, formSubmit, fileGetName) {
+                    formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                    fileGetName($("#filebox"), $("#filename"));
+                });

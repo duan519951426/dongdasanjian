@@ -24,7 +24,6 @@ define((require, exports, module)=>{
         return x;
     };
 
-
     const main = ()=>{
         return data2;
     };
