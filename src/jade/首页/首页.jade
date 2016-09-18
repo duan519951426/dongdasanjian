@@ -1,0 +1,58 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+        link(href='../../css/index.css' rel='stylesheet')
+    body
+        div.index-box.clearfix
+            // 左
+            div.index--box-left
+                // 个人日程
+                div.index-body
+                    div.easyui-panel(title='个人日程' style='width: 100%;padding: 10px;' data-options="iconCls: 'icon-application_view_list', tools: '.tools1'")
+                        ol.index-list
+                            li
+                                a 东大三建 人事调动通知
+                                span [2016-03-16]
+                            li
+                                a 东大三建 人事调动通知
+                                span [2016-03-16]
+                        div.tools1
+                            a.index-more.icon-more(title='更多')
+                // 待办日常
+                div.index-body
+                    div.easyui-panel(title='待办日常' style='width: 100%;padding: 10px;' data-options="iconCls: 'icon-page_white_office', tools: '.tools3'")
+                        div.index-nomessage 暂无消息
+                        div.tools3
+                            a.index-more.icon-more(title='更多')
+                // 待办业务
+                div.index-body
+                    div.easyui-panel(title='待办业务' style='width: 100%;padding: 10px;' data-options="iconCls: 'icon-page_white_visualstudio', tools: '.tools5'")
+                        ol.index-list
+                            li
+                                a 东大三建 人事调动通知
+                                span [2016-03-16]
+                            li
+                                a 东大三建 人事调动通知
+                                span [2016-03-16]
+                        div.tools5
+                            a.index-more.icon-more(title='更多')
+            // 右
+            div.index--box-right
+                // 公告
+                div.index-body
+                    div.easyui-panel(title='公告' style='width: 100%;padding: 10px;' data-options="iconCls: 'icon-sound', tools: '.tools2'")
+                        div.index-nomessage 暂无消息
+                        div.tools2
+                            a.index-more.icon-more(title='更多')
+                // 短消息
+                div.index-body
+                    div.easyui-panel(title='短消息' style='width: 100%;padding: 10px;' data-options="iconCls: 'icon-email', tools: '.tools4'")
+                        div.index-nomessage 暂无消息
+                        div.tools4
+                            a.index-more.icon-more(title='更多')
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common"]);

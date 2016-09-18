@@ -98,3 +98,8 @@
 /* 新添加图标 */
 .icon-document_export {background: url('./icons/document_export.png') no-repeat center center;}
 .icon-application_put {background: url('./icons/application_put.png') no-repeat center center;}
+.icon-application_view_list {background: url('./icons/application_view_list.png') no-repeat center center;}
+.icon-email {background: url('./icons/email.png') no-repeat center center;}
+.icon-page_white_office {background: url('./icons/page_white_office.png') no-repeat center center;}
+.icon-page_white_visualstudio {background: url('./icons/page_white_visualstudio.png') no-repeat center center;}
+.icon-sound {background: url('./icons/sound.png') no-repeat center center;}
