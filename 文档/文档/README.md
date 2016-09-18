@@ -1,5 +1,4 @@
 # 东大三建
----
 
 #### 1、工具
 构建工具：gulp   
@@ -13,6 +12,23 @@ javascript：es6
 
 #### 2、javascript
 所有的javascript采用es6语法，页面引入js文件使用requirejs，规范使用cmd规范   
+requirejs配置文件：
+```javascript
+require.config({
+	/* js文件夹路径 */
+    baseUrl: '/js/', 
+	/* 文件配置，使用超过一次以上的模块在这里配置 */
+    paths: {
+        "name": "url"
+    },
+    /* 依赖 */
+    shim: {
+        "插件名称": {
+            deps: ["依赖插件名称"]
+        }
+    }
+});
+```
 页面上引入：
 ```html
 <script src='../../js/common/require.2.2.0.min.js'></script>
@@ -42,3 +58,5 @@ define((require, exports, module)=>{
 	module.exports = main; 
 });
 ```
+
+#### 3、[js模块文档](./modules/README.md)

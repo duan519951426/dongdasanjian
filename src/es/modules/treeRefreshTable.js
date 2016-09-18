@@ -2,8 +2,8 @@
  * 点击树，根据树的内容刷新表格
  * @$tree：点击的树
  * @$table：刷新的表格
- * @url<string>：刷新地址
- * @dataFun<object>：参数和方法
+ * @url<String>：刷新地址
+ * @dataFun<Object>：参数和方法
  *   key：参数名
  *   value：方法或者字符串
  */

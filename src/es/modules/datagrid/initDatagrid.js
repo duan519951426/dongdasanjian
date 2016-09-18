@@ -1,7 +1,7 @@
 /**
  * 初始化分页数据处理的表格
- * @$element<object>：表格的$DomElement
- * @btn<object>：key 字段，value 对应的按钮DomElement，如果没有该字段，则对应的按钮为禁止使用状态，有该字段，则对应的按钮为可用状态
+ * @$element<$selector>：表格的$DomElement
+ * @btn<Object>：key 字段，value 对应的按钮DomElement，如果没有该字段，则对应的按钮为禁止使用状态，有该字段，则对应的按钮为可用状态
  */
 
 define((require, exports, module)=>{

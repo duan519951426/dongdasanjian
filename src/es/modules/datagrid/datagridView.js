@@ -1,7 +1,7 @@
 /**
  * 数据网格扩展，点击加号显示更多
  * @$element：表格的$element
- * @callback<function>：执行成功的回调函数，参数为获取的json数据
+ * @callback<Function>：执行成功的回调函数，参数为获取的json数据
  */
 
 define((require, exports, module)=>{

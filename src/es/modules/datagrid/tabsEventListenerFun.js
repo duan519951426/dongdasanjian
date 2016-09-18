@@ -1,9 +1,9 @@
 /**
  * 选项卡绑定事件
- * @$element<object>：选项卡的$DomElement
- * @fun<array>：各个索引执行的事件
- * @more<boolean>：执行次数，true 多次，false 一次
- * @index<number>：初始化执行的函数，默认不执行
+ * @$element<$selector>：选项卡的$DomElement
+ * @fun<Array>：各个索引执行的事件
+ * @more<Boolean>：执行次数，true 多次，false 一次
+ * @index<Number>：初始化执行的函数，默认不执行
  */
 
 define((require, exports, module)=>{

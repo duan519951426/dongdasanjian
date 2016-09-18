@@ -1,7 +1,7 @@
 /**
  * 文件上传后自动给input添加文件名
- * @$filebox<object>：上传控件的DomElement
- * @$input<object>：input的DomElement
+ * @$filebox<$selector>：上传控件的DomElement
+ * @$input<$selector>：input的DomElement
  */
 
 define((require, exports, module)=>{

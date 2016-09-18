@@ -1,7 +1,7 @@
 /**
  * 延迟执行
  * 防止某些事件在easyui未初始化完毕之前就执行
- * @fun<function>：需要延迟执行的事件
+ * @fun<Function>：需要延迟执行的事件
  */
 
 define((require, exports, module)=>{

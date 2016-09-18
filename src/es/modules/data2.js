@@ -1,5 +1,7 @@
 /**
- * 转换数据格式
+ * 处理请求url和请求数据
+ * @dataFun<Object|Null>：数据以及获取的方法
+ * @url<String>：地址
  */
 
 define((require, exports, module)=>{

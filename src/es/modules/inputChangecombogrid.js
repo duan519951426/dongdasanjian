@@ -1,13 +1,13 @@
 /**
  * 新增返库
- * @$input：input(type='text')表单
- * @$combogrid：组合表格
- * @url<string>：url地址
- * @dataFun<object>：数据以及获取的方法
- * @options<object>：配置
- *   idField
- *   textField
- *   columns
+ * @$input<$selector>：input(type='text')表单
+ * @$combogrid<$selector>：组合表格
+ * @url<String>：url地址
+ * @dataFun<Object>：数据以及获取的方法
+ * @options<Object>：配置
+ *   idField<String>：定义标识树节点的键名字段。必需。
+ *   textField<String>：定义树节点的字段。必需。
+ *   columns<Array>：数据网格（datagrid）的列（column）的配置对象
  */
 
 define((require, exports, module)=>{

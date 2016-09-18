@@ -1,9 +1,9 @@
 /**
  * 操作表格数据的方法
- * @url<string>：ajax或者iframe的地址
- * @ctrl<string>：执行方法，有ajax和openWindow
- * @dataFun<object>：数据以及获取的方法
- * @callback<function>：事件执行完的回调函数
+ * @url<String>：ajax或者iframe的地址
+ * @ctrl<String>：执行方法，有ajax和openWindow
+ * @dataFun<Object>：数据以及获取的方法
+ * @callback<Function>：事件执行完的回调函数
  */
 
 define((require, exports, module)=>{
