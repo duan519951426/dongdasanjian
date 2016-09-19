@@ -1,7 +1,7 @@
 /**
  * 选项卡绑定事件
- * @$element<$selector>：选项卡的$DomElement
- * @fun<Array>：各个索引执行的事件
+ * @$element<$selector>：选项卡
+ * @fun<Array>：各个索引执行的事件，数组内为Function或者null（不执行）
  * @more<Boolean>：执行次数，true 多次，false 一次
  * @index<Number>：初始化执行的函数，默认不执行
  */

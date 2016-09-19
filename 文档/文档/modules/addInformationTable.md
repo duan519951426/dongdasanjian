@@ -5,7 +5,7 @@
 <script src='../../js/common/require.2.2.0.min.js'></script>
 <script src='../../js/common/require.config.js'></script>
 <script>
-	require(["addInformationTable"], function (addInformationTable) {
+	require(["common", "addInformationTable"], function (common, addInformationTable) {
 		addInformationTable();
 	});
 </script>
@@ -22,6 +22,7 @@
 	<tr>
 		...
 	</tr>
+</table>
 ```
 * 添加按钮id：#formAdd
 * 布局表格id：#formTable

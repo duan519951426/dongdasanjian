@@ -5,7 +5,7 @@
 <script src='../../js/common/require.2.2.0.min.js'></script>
 <script src='../../js/common/require.config.js'></script>
 <script>
-	require(["initDatagrid"], function (initDatagrid) {
+	require(["common", "initDatagrid"], function (common, initDatagrid) {
 		// initDatagrid($element, btn);
 		initDatagrid($element, {
 			"del": $del,
@@ -14,5 +14,5 @@
 	});
 </script>
 ```
-* $element<$selector>：表格
-* btn<Object>：key 字段，value 对应的按钮DomElement，如果没有该字段，则对应的按钮为禁止使用状态，有该字段，则对应的按钮为可用状态
+* $element&lt;$selector&gt;：表格
+* btn&lt;Object&gt;：key 字段，value 对应的按钮DomElement，如果没有该字段，则对应的按钮为禁止使用状态，有该字段，则对应的按钮为可用状态

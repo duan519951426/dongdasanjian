@@ -1,8 +1,9 @@
 /**
  * 操作表格数据的方法
- * @url<String>：ajax或者iframe的地址
- * @ctrl<String>：执行方法，有ajax和openWindow
- * @dataFun<Object>：数据以及获取的方法
+ * @url<String>：地址
+ * @ctrl<String>：执行方法，有ajax、openWindow、newHref
+ * @dataFun<Object|Null>：数据以及获取的方法
+ * @options<Object>：其他的可选择的配置选项
  * @callback<Function>：事件执行完的回调函数
  */
 

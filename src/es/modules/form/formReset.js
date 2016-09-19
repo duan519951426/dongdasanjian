@@ -1,7 +1,7 @@
 /**
  * 表单重置
- * @$resetBtnElement：重置按钮（$(selector)）
- * @$formElement：表单（$(selector)）
+ * @$resetBtnElement<$selector>：重置按钮
+ * @$formElement<$selector>：表单
  */
 
 define((require, exports, module)=>{

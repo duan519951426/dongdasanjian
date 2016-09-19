@@ -50,6 +50,10 @@ js书写：
 define((require, exports, module)=>{
 	const r = require(...); // 包含其他模块
 	
+	const etc = ()=>{
+	// 其他函数
+	};
+
 	const main = (...)=>{ // 参数
 	// 主函数
 	};

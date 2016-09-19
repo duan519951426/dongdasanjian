@@ -2,7 +2,7 @@
  * 初始化树形表格
  * @$element<$selector>：表格的$DomElement
  * @treeField<String>：定义树节点的字段
- * @btn<Object>：key 字段，value 对应的按钮DomElement，如果没有该字段，则对应的按钮为禁止使用状态，有该字段，则对应的按钮为可用状态
+ * @btn<Object>：key->字段，value->对应的按钮$selector，如果没有该字段，则对应的按钮为禁止使用状态，有该字段，则对应的按钮为可用状态
  */
 
 define((require, exports, module)=>{

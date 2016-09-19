@@ -6,7 +6,7 @@
 <script src='../../js/common/require.2.2.0.min.js'></script>
 <script src='../../js/common/require.config.js'></script>
 <script>
-	require(["fileGetName"], function (fileGetName) {
+	require(["common", "fileGetName"], function (common, fileGetName) {
 		fileGetName($filebox, $input);
 	});
 </script>

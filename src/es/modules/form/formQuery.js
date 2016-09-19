@@ -1,9 +1,9 @@
 /**
  * 表单查询
- * @$queryBtnElement：查询按钮（$(selector)）
- * @$tableElement：表格（$(selector)）
+ * @$queryBtnElement<$selector>：查询按钮
+ * @$tableElement<$selector>：表格
  * @url<String>：请求的地址
- * @dataFun<Object>：参数和方法
+ * @dataFun<Object|Null>：参数和方法
  *   key：参数名
  *   value：方法或者字符串
  */

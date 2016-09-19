@@ -6,7 +6,7 @@
 <script src='../../js/common/require.2.2.0.min.js'></script>
 <script src='../../js/common/require.config.js'></script>
 <script>
-	require(["inputChangeCombogrid"], function (inputChangeCombogrid) {
+	require(["common", "inputChangeCombogrid"], function (common, inputChangeCombogrid) {
 		inputChangeCombogrid($input, $selector, url, dataFun, options);
 	});
 </script>
@@ -15,7 +15,15 @@
 * $input&lt;$selector&gt;：表单
 * $combogrid&lt;$selector&gt;：easyui组合表格
 * url&lt;String&gt;：url地址
-* dataFun&lt;Object&gt;：数据以及获取的方法
+* dataFun&lt;Object|Null&gt;：数据以及获取的方法
+```javascript
+inputChangeCombogrid($input, $selector, url, {
+	"data1": function(){
+		return ...
+	},
+	"data2": "string"
+}, options);
+```
 * options&lt;Object&gt;：配置
 	* idField&lt;String&gt;：定义标识树节点的键名字段。必需。
 	* textField&lt;String&gt;：定义树节点的字段。必需。

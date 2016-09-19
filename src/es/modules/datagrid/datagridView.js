@@ -1,6 +1,6 @@
 /**
  * 数据网格扩展，点击加号显示更多
- * @$element：表格的$element
+ * @$element<$selector>：表格的$element
  * @callback<Function>：执行成功的回调函数，参数为获取的json数据
  */
 
@@ -16,7 +16,7 @@ define((require, exports, module)=>{
         return $("._DATAGRIDVIEW_STATE_");
     };
     // 给加号添加事件
-    const jiahaoFun = ($state, callback)=>{
+    const jiahaoFun = ($element, $state, callback)=>{
         function load(event){
             const $this = $(this);
             $.ajax({
@@ -53,7 +53,7 @@ define((require, exports, module)=>{
         const addEtc = ()=>{
             const data = $element.datagrid("getData");
             const $state = addJiahao($element, data);
-            jiahaoFun($state, callback);
+            jiahaoFun($element, $state, callback);
         };
 
         $element.datagrid({

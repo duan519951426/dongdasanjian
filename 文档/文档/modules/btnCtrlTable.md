@@ -6,14 +6,14 @@
 <script src='../../js/common/require.2.2.0.min.js'></script>
 <script src='../../js/common/require.config.js'></script>
 <script>
-	require(["btnCtrlTable"], function (btnCtrlTable) {
+	require(["common", "btnCtrlTable"], function (common, btnCtrlTable) {
 		btnCtrlTable($btnElement, $tableElement, url, ctrl, dataFun, options);
 	});
 </script>
 ```
 * $btnElement<$selector>：按钮的$DomElement
-* $tableElement<Array|Null|$selector>：需要刷新的表格的数组或单个对象，如果不刷新就传null
-* url<String>：地址
-* ctrl<String>：执行方法，有ajax、openWindow、newHref
-* dataFun<Object|Null>：数据以及获取的方法
-* options<Object>：其他的可选择的配置选项
+* $tableElement&lt;Array|Null|$selector&gt;：需要刷新的表格的数组或单个对象，如果不刷新就传null
+* url&lt;String&gt;：地址
+* ctrl&lt;String&gt;：执行方法，有ajax、openWindow、newHref
+* dataFun&lt;Object|Null&gt;：数据以及获取的方法
+* options&lt;Object&gt;：其他的可选择的配置选项

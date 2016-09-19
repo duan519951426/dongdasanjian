@@ -12,7 +12,7 @@ define((require, exports, module)=>{
     // require
     const tableFunction = require("tableFunction");
     // 判断是否是数组
-    const isArray = obj => Object.prototype.toString.call(obj) === '[object Array]';
+    const isArray = obj => Object.prototype.toString.call(obj) === "[object Array]";
 
     // 模块主函数，对外接口
     const main = ($btnElement, $tableElement, url, ctrl, dataFun, options)=>{
