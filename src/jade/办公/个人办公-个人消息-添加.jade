@@ -1,0 +1,37 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        form.easyui-panel#form(title='添加个人消息' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 标题：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 接收人：
+                    td.eui-formLayout-option
+                        input.easyui-combotree.eui-formComponent(data-options="editable: false, multiple: true, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'" required)
+                    td.textAlign-right 抄送人：
+                    td.eui-formLayout-option
+                        input.easyui-combotree.eui-formComponent(data-options="editable: false, multiple: true, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                tr
+                    td(colspan='2')
+                        input.easyui-filebox.eui-formExplain#filebox(data-options="prompt: '未选择任何文件'")
+                tr
+                    td.textAlign-right 说明：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "fileGetName"], function(common, formSubmit, fileGetName){
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                fileGetName($("#filebox"), $("#filename"));
+            });

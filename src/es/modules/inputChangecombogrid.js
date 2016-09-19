@@ -1,5 +1,5 @@
 /**
- * 新增返库
+ * // 新增返库
  * @$input<$selector>：input(type='text')表单
  * @$combogrid<$selector>：组合表格
  * @url<String>：url地址

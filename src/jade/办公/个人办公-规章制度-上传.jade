@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        form.easyui-panel#form(title='上传规章制度' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 制度类型：
+                    td.eui-formLayout-option
+                        select.easyui-combobox.eui-formComponent(data-options="url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'" required)
+                    td.textAlign-right 制度名称：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right
+                    td.eui-formLayout-option(colspan='2')
+                        input.easyui-filebox.eui-formExplain#filebox(data-options="prompt: '未选择任何文件'")
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "fileGetName"], function (common, formSubmit, fileGetName) {
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                fileGetName($("#filebox"), $("#filename"));
+            });
