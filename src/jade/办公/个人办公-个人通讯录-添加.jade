@@ -1,0 +1,73 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        form.easyui-panel#form(title='添加客户' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 姓名：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right.fontSize-zero 性别：
+                    td.eui-formLayout-option
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 男
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 女
+                    td.textAlign-right 公司电话：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                tr
+                    td.textAlign-right 个人电话：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 公司：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 部门：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 称呼：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 职务：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 生日：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                tr
+                    td.textAlign-right 关系：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text')
+                    td.textAlign-right 邮箱：
+                    td
+                        input.easyui-textbox.eui-formComponent(type='text' data-options="validType: 'email'")
+                tr
+                    td.textAlign-right 地址：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                    td.textAlign-right 个人喜好：
+                    td(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                tr
+                    td.textAlign-right 备注：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit", "vaildForm"], function (common, formSubmit, vaildForm) {
+                vaildForm();
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+            });

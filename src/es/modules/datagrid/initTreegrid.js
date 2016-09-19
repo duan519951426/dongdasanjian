@@ -14,9 +14,11 @@ define((require, exports, module)=>{
         singleSelect: true,    // 只允许选中一行
         autoRowHeight: false,  // 是否设置基于该行内容的行高度
         method: "GET",
+        idField: "id"
+        /*
         pagination: true,      // 显示分页工具栏
         pageSize: 30,
-        idField: "id"
+        */
     };
 
     // 判断按钮是否禁用
