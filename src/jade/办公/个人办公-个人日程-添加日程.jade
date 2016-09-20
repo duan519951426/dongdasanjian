@@ -1,0 +1,54 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        form.easyui-panel#form(title='添加公告' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 开始时间：
+                    td.eui-formLayout-option
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calender'" required)
+                    td.textAlign-right 计划完成时间：
+                    td.eui-formLayout-option
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calender'" required)
+                    td.textAlign-right
+                    td.eui-formLayout-option
+                tr
+                    td.textAlign-right 日程类型：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 日程
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 休假
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 出差
+                    td.textAlign-right 日程分配：
+                    td
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 自己
+                        label.eui-formLabel
+                            input(type='radio')
+                            span 他人
+                        select.easyui-combobox.eui-formComponent(data-options="editable: false, url: 'http://127.0.0.1:10086/combobox', method: 'GET', valueField: 'id', textField: 'text'")
+                tr
+                    td.textAlign-right 工作内容：
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;' required)
+            div.easyui-calender#calender
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+            // js
+            script(src='../../js/common/require.2.2.0.min.js')
+            script(src='../../js/common/require.config.js')
+            script.
+                require(["common", "formSubmit"], function (common, formSubmit) {
+                    formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+                });

@@ -24,12 +24,12 @@ html
             // 全部
             div#toolbar-all
                 a.easyui-linkbutton#toolbar-all-look(data-options="iconCls:'icon-search', plain:true") 查看
-    // js
-    script(src='../../js/common/require.2.2.0.min.js')
-    script(src='../../js/common/require.config.js')
-    script.
-        require(["common", "initTreegrid", "btnCtrlTable", "dbClickNewHref"], function(common, initTreegrid, btnCtrlTable, dbClickNewHref){
-            var $table = $("#table");
-            initTreegrid($table, "region");
-            dbClickNewHref($table, "./个人办公-员工动静板-查看.html");
-        });
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initTreegrid", "btnCtrlTable", "dbClickNewHref"], function(common, initTreegrid, btnCtrlTable, dbClickNewHref){
+                var $table = $("#table");
+                initTreegrid($table, "region");
+                dbClickNewHref($table, "./个人办公-员工动静板-查看.html");
+            });
