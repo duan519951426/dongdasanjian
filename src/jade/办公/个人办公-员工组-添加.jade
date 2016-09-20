@@ -1,0 +1,35 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        form.easyui-panel#form(title='添加员工组' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 标题：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 描述：
+                    td.eui-formLayout-option(colspan='2')
+                        input.easyui-textbox.eui-formExplain(type='text')
+                    td.eui-formLayout-option
+                tr
+                    td.textAlign-right 添加：
+                    td(colspan='5')
+                        select.easyui-combotreegrid(style='width: 450px;' data-options="url: 'http://127.0.0.1:10086/treedata1', multiple: true, panelWidth: 520, panelHeight: 400, idField: 'id', treeField: 'text'," +
+                        "columns:[[" +
+                            "{field: 'text', title: '姓名', width: 200}, " +
+                            "{field: 'id', title: '部门', width: 150}, " +
+                            "{field: 'id', title: '职务', width: 150}" +
+                        "]]")
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+                a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit"], function (common, formSubmit) {
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+            });

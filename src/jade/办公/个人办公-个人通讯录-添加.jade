@@ -10,8 +10,8 @@ html
                     td.textAlign-right 姓名：
                     td.eui-formLayout-option
                         input.easyui-textbox.eui-formComponent(type='text' required)
-                    td.textAlign-right.fontSize-zero 性别：
-                    td.eui-formLayout-option
+                    td.textAlign-right 性别：
+                    td.eui-formLayout-option.fontSize-zero
                         label.eui-formLabel
                             input(type='radio')
                             span 男
@@ -40,7 +40,7 @@ html
                         input.easyui-textbox.eui-formComponent(type='text')
                     td.textAlign-right 生日：
                     td
-                        input.easyui-textbox.eui-formComponent(type='text')
+                        input.easyui-datebox.eui-formComponent(type='text' data-options="sharedCalendar: '#calender'")
                 tr
                     td.textAlign-right 关系：
                     td
@@ -60,6 +60,7 @@ html
                 tr
                     td(colspan='6')
                         input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+            div.easyui-calender#calender
             div.eui-panel-footer
                 a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
                 a.easyui-linkbutton(data-options="iconCls: 'icon-undo'") 返回

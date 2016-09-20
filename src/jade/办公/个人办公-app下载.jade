@@ -1,0 +1,37 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+        style.
+            .codebox dl {float: left;margin-right: 100px;}
+            .codebox dt {margin-bottom: 10px;}
+            .codebox dd {text-align: center;}
+    body
+        div.easyui-panel(title='app下载' style='width: 100%;padding: 10px;')
+            div.codebox.clearfix
+                dl
+                    dt#code1
+                    dd 安卓版App
+                dl
+                    dt#code2
+                    dd IOS版App
+
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "qrcode"], function (common, qrcode) {
+                qrcode([
+                    {
+                        id: "code1",
+                        l: 200,
+                        url: "https://baidu.com"
+                    },
+                    {
+                        id: "code2",
+                        l: 200,
+                        url: "http://qq.com"
+                    }
+
+                ]);
+            });

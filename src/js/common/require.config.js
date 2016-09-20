@@ -11,6 +11,10 @@ require.config({
         "zh_CN": "./common/easyui-lang-zh_CN",  // 汉化文件
         "common": "./modules/common",            // 基本的打包文件，将每页需要的公用文件打包进来
 
+        /* 二维码 */
+        "_QRCode": "./common/QRCode", // 二维码构造函数
+        "qrcode": "./modules/qrcode", // 生成二维码
+
         /* 插件 */
         "deferr": "./modules/deferr",            // 延时加载
         "data2": "./modules/data2",               // 数据处理

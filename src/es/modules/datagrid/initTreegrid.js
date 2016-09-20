@@ -9,8 +9,6 @@ define((require, exports, module)=>{
 
     // 默认的配置项
     const treegridOptions = {
-        rownumbers: false,      // 行号
-        fitColumns: false,      // 自动扩大或缩小列的尺寸以适应网格的宽度
         singleSelect: true,    // 只允许选中一行
         autoRowHeight: false,  // 是否设置基于该行内容的行高度
         method: "GET",
