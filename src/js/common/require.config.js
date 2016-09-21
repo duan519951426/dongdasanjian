@@ -11,6 +11,9 @@ require.config({
         "zh_CN": "./common/easyui-lang-zh_CN",  // 汉化文件
         "common": "./modules/common",            // 基本的打包文件，将每页需要的公用文件打包进来
 
+        "vue": "./common/vue.min",       // vue
+        "es5": "./common/es5-shim.min", // es5兼容
+
         /* 二维码 */
         "_QRCode": "./common/QRCode", // 二维码构造函数
         "qrcode": "./modules/qrcode", // 生成二维码

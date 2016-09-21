@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+        link(href='../../css/shoudongtianjiayusuan.css' rel='stylesheet')
+    body
+        // 预算成本选择
+        form.easyui-panel#vue-app-1(title='预算成本选择' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer', collapsible: true")
+            dl.xuanzeCheckbox
+                dt.xuanzeCheckbox-dt.clearfix
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t1 选择
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t2 成本划分
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t3 主项目及辅助项目名称
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t1 选择
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t2 成本划分
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t3 主项目及辅助项目名称
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t1 选择
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t2 成本划分
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t3 主项目及辅助项目名称
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t1 选择
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t2 成本划分
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t3 主项目及辅助项目名称
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t1 选择
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t2 成本划分
+                    div.xuanzeCheckbox-t.xuanzeCheckbox-t3 主项目及辅助项目名称
+                dd.xuanzeCheckbox-dd.clearfix
+                    template(v-for="obj in checkdata")
+                        div.xuanzeCheckbox-t.xuanzeCheckbox-t1
+                            input.xuanzeCheckbox-checkbox(type='checkbox' v-on:click="checkCk($index)")
+                        div.xuanzeCheckbox-t.xuanzeCheckbox-t2 {{obj.type}}
+                        div.xuanzeCheckbox-t.xuanzeCheckbox-t3 {{obj.name}}
+            div.eui-panel-footer
+                a.easyui-linkbutton(data-options="iconCls: 'icon-ok'" v-on:click="queren()") 确认选择项
+                a.easyui-linkbutton#reset(data-options="iconCls: 'icon-clear'") 清空选择项
+        //
+        form.easyui-panel#vue-app-1(title='预算成本选择' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer', collapsible: true")
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "../../js/shoudongtianjiayusuan/main.js", "formReset"], function(common, shoudongtianjiayusuan, formReset){
+                formReset($("#reset"), $("#vue-app-1"));
+                shoudongtianjiayusuan();
+            });

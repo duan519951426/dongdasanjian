@@ -1,0 +1,68 @@
+/* 个人日程 */
+.eui-panel-tools-btn
+  cursor: pointer
+.richengBox
+  width: 100%
+  position: relative
+.richengLong
+  position: absolute
+  top: 27px
+  left: 0
+  right: 0
+  bottom: 0
+.richengLong-l
+  width: 100%
+  padding-top: 20px
+  height: 147px
+.richengTable
+  border-collapse: collapse
+  width: 100%
+  th, td
+    border: 1px solid #c3d9ff
+  th
+    height: 27px
+    text-align: center
+    background-color: #99bbe8
+    width: (100% / 7)
+  td
+    height: 167px
+.richengTable-box
+  position: relative
+  z-index: 2
+  display: block
+  width: 100%
+  height: 100%
+  &:hover
+    text-decoration: none
+.richengTable-time
+  padding: 0 3px
+  height: 20px
+  line-height: 20px
+  text-align: right
+  background-color: #f5f5f5
+  color: #000
+.richengTable-today
+  background-color: #ffc
+.richengTable-noMonth
+  color: #979797
+.richengTable-work
+  margin-bottom: 1px
+  height: 25px
+  width: 100%
+  border-radius: 5px
+  background-color: #d96666
+  color: #fff
+  overflow: hidden
+  background-image: url('../img/color.png')
+  background-repeat: no-repeat
+  background-position: 25px center
+  &:before, &:after
+    margin-top: 4px
+  &:before
+    content: '◀ '
+    float: left
+    margin-left: 4px
+  &:after
+    content: '▶'
+    float: right
+    margin-right: 4px

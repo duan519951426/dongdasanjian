@@ -1,0 +1,146 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+        link(href='../../css/gerenricheng.css' rel='stylesheet')
+    body
+        div.easyui-panel(title='个人日程' style='width: 100%;' data-options="tools: '.eui-panel-tools'")
+            div.richengBox
+                div.richengLong
+                    div.richengLong-l
+                        div.richengTable-work(style='width: 28.57%;')
+                        div.richengTable-work(style='width: 42.85%;margin-left: 28.57%;')
+                    div.richengLong-l
+                    div.richengLong-l
+                    div.richengLong-l
+                    div.richengLong-l
+                table.richengTable
+                    thead
+                        tr
+                            th 周一
+                            th 周二
+                            th 周三
+                            th 周四
+                            th 周五
+                            th 周六
+                            th 周日
+                    tbody
+                        tr
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time.richengTable-noMonth 2016年8月29日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time.richengTable-noMonth 2016年8月30日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time.richengTable-noMonth 2016年8月31日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月1日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月2日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月3日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月4日
+                        tr
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月5日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月6日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月7日
+                            td
+                                a.richengTable-box.richengTable-today(href='#')
+                                    div.richengTable-time 2016年9月8日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月9日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月10日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月11日
+                        tr
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月11日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月12日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月13日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月14日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月15日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月16日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月17日
+                        tr
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月18日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月19日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月20日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月21日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月22日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月23日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月24日
+                        tr
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月25日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月26日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月27日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月28日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月29日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time 2016年9月30日
+                            td
+                                a.richengTable-box(href='#')
+                                    div.richengTable-time.richengTable-noMonth 2016年10月1日
+            div.eui-panel-tools
+                a.icon-calendar_month_new.eui-panel-tools-btn(title='返回本月')
+                a.icon-media_controls_first_small.eui-panel-tools-btn(title='prev')
+                a.icon-media_controls_last_small.eui-panel-tools-btn(title='next')
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common"]);
