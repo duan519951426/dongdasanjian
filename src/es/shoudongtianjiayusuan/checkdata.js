@@ -1,10 +1,16 @@
 /**
- * 手动添加预算的选择数据
+ * 预算成本选择
  */
 
 define((require, exports, module)=>{
-    const main = ()=>{
-        return [
+    /MSIE [6|7|8]\.0/ig.test(window.navigator.appVersion) ? require("es5") : null;
+    const Vue = require("vue");
+
+    const $vueApp1 = $("#vue-app-1");
+    const main = function(_DATA){
+        this._DATA = _DATA;
+        // 数据
+        this.data = [
             {"type": "A00", "name": "总体"},
             {"type": "B00", "name": "基础"},
             {"type": "C00", "name": "基础附带金属结构"},
@@ -97,5 +103,58 @@ define((require, exports, module)=>{
             {"type": "Z00", "name": "其它"}
         ];
     };
-    module.exports = main();
+    // 重置数据
+    main.prototype.resetCheckbox = function(){
+        $.each(this.data, function(index){
+            if(this._check && this._check === true){
+                this._check = null
+            }
+        });
+    };
+    // 渲染checkbox列表
+    main.prototype.vue_checkbox = function(){
+        const _this = this;
+        new Vue({
+            el: '#vue-app-1',
+            data: {
+                checkdata: _this.data
+            },
+            methods: {
+                checkCk: function(index, event){
+                    let r = true;
+                    $.each(_this._DATA, function(_index){
+                        if(this.type === _this.data[index].type){
+                            r = false;
+                            return false;
+                        }
+                    });
+                    if(r === true){
+                        _this.data[index]._check = _this.data[index]._check ? null : true;
+                    }else{
+                        event.target.checked = false;
+                        $.messager.alert("提示", "此项已存在于预算中，无法重复添加。");
+                    }
+                },
+                queren: function(){
+                    $.each(_this.data, function(index){
+                        if(this._check && this._check === true){
+                            _this._DATA.push(this);
+                        }
+                    });
+                    _this.resetCheckbox();
+                    $vueApp1.form("reset");
+                }
+            }
+        });
+    };
+    // 初始化
+    main.prototype.init = function(){
+        this.vue_checkbox();
+
+        $("#reset1").on("click", ()=>{
+            this.resetCheckbox();
+        });
+    };
+
+    module.exports = main;
 });

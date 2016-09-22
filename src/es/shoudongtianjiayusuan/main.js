@@ -3,55 +3,21 @@
  */
 
 define((require, exports, module)=>{
-    if(/MSIE [6|7|8]\.0/ig.test(window.navigator.appVersion)){
-        require("es5");
-    }
-    const Vue = require("vue");
-    /* 可选择的项目 */
-    const checkdata = require("./checkdata.js");
-
-    /* 数据为核心 */
+    /* 数据 */
     const _DATA = window._DATA || [];
 
-    /* checkbox的相关事件 */
-    // 重置数据
-    const resetCheckbox = ()=>{
-        $.each(checkdata, function(index){
-            if(this._check && this._check === true){
-                this._check = null
-            }
-        });
-    };
-    // 渲染checkbox列表
-    const vue_checkbox = ()=>{
-        new Vue({
-            el: '#vue-app-1',
-            data: {
-                checkdata: checkdata
-            },
-            methods: {
-                checkCk: function(index){
-                    checkdata[index]._check = checkdata[index]._check ? null : true;
-                },
-                queren: function(){
-                    $.each(checkdata, function(index){
-                        if(this._check && this._check === true){
-                            _DATA.push(this);
-                        }
-                    });
-                }
-            }
-        });
-    };
-    const initCheckbox = ()=>{
-        vue_checkbox();
-        $("#reset").on("click", resetCheckbox);
-    };
-
+    // -----------------------------------------------------------------
+    // 预算成本选择
+    const Checkdata = require("./checkdata.js"),
+        checkdata = new Checkdata(_DATA);
+    // 预算明细及说明
+    const Details = require("./details.js"),
+        details = new Details(_DATA);
+    // -----------------------------------------------------------------
     /* 主函数 */
     const main = ()=>{
-        initCheckbox();
-
+        checkdata.init(); // 预算成本选择
+        details.init();   // 预算明细及说明
 
     };
     module.exports = main;

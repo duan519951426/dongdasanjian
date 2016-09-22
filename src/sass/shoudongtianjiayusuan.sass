@@ -2,12 +2,13 @@
 $bc: #dbdbdb
 $b1: 1px solid $bc
 $b2: 1px dashed  $bc
-
+$bgcolor: #56aed1
+/* 预算成本选择 */
 .xuanzeCheckbox
   width: 100%
 .xuanzeCheckbox-dt
   border-left: 1px solid transparent
-  background-color: #56aed1
+  background-color: $bgcolor
   text-align: center
   .xuanzeCheckbox-t
     padding: 5px 0
@@ -34,3 +35,38 @@ $b2: 1px dashed  $bc
 .xuanzeCheckbox-checkbox
   width: 14px
   height: 14px
+/* 预算明细及说明 */
+.text
+  margin-bottom: 5px
+  span
+    margin-right: 10px
+.text-c1
+  color: #0094ff
+.text-c2
+  color: #24ca0b
+.text-c3
+  color: #ea830b
+.detailsTable
+  border-collapse: collapse
+  width: 100%
+  thead
+    text-align: center
+    background-color: $bgcolor
+    color: #fff
+  th, td
+    padding: 5px 3px
+  th
+    border: $b1
+    font-weight: normal
+  td
+    border: $b2
+.detailsTable-a
+  margin-right: 5px
+  color: #0c215d
+  cursor: pointer
+.detailsTable-trbg0
+  background-color: #fbfaf0
+.detailsTable-trbg1
+  background-color: #bcd2ee
+.detailsTable-b
+  font-weight: bold

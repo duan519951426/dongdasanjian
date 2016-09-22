@@ -5,7 +5,7 @@ html
         link(href='../../css/shoudongtianjiayusuan.css' rel='stylesheet')
     body
         // 预算成本选择
-        form.easyui-panel#vue-app-1(title='预算成本选择' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer', collapsible: true")
+        form.easyui-panel#vue-app-1(title='预算成本选择' style='width: 100%;padding: 10px;' data-options="footer: '.vue-app-1', collapsible: true")
             dl.xuanzeCheckbox
                 dt.xuanzeCheckbox-dt.clearfix
                     div.xuanzeCheckbox-t.xuanzeCheckbox-t1 选择
@@ -26,19 +26,159 @@ html
                 dd.xuanzeCheckbox-dd.clearfix
                     template(v-for="obj in checkdata")
                         div.xuanzeCheckbox-t.xuanzeCheckbox-t1
-                            input.xuanzeCheckbox-checkbox(type='checkbox' v-on:click="checkCk($index)")
+                            input.xuanzeCheckbox-checkbox(type='checkbox' v-on:click="checkCk($index, $event)")
                         div.xuanzeCheckbox-t.xuanzeCheckbox-t2 {{obj.type}}
                         div.xuanzeCheckbox-t.xuanzeCheckbox-t3 {{obj.name}}
-            div.eui-panel-footer
-                a.easyui-linkbutton(data-options="iconCls: 'icon-ok'" v-on:click="queren()") 确认选择项
-                a.easyui-linkbutton#reset(data-options="iconCls: 'icon-clear'") 清空选择项
-        //
-        form.easyui-panel#vue-app-1(title='预算成本选择' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer', collapsible: true")
+            div.eui-panel-footer.vue-app-1
+                a.easyui-linkbutton(data-options="iconCls: 'icon-ok'" v-on:click="queren();") 确认选择项
+                a.easyui-linkbutton#reset1(data-options="iconCls: 'icon-clear'") 清空选择项
+        // 预算明细及说明
+        form.easyui-panel#vue-app-2(title='预算明细及说明' style='width: 100%;padding: 10px;' data-options="footer: '.vue-app-2', collapsible: true")
+            p.text
+                span.text-c1 预算总金额: 0.00
+                span.text-c2 采购总金额: 0.00&nbsp;（材料：0.00&nbsp;费用：0.00）
+                span.text-c3 工务总金额: 0.00&nbsp;（材料：0.00&nbsp;费用：0.00）
+            table.detailsTable
+                thead
+                    tr
+                        th(style='width: 13%;') 成本划分
+                        th(style='width: 5%;') 子项
+                        th(style='width: 25%;') 型式或规格
+                        th(style='width: 5%;') 单位
+                        th(style='width: 7%;') 单价
+                        th(style='width: 3%;') 数量
+                        th(style='width: 10%;') 小计
+                        th(style='width: 15%;') 费用备注
+                        th(style='width: 5%;') 项目合计金额
+                        th(style='width: 12%;') 操作
+                tbody
+                    template(v-if="DATA.length > 0")
+                        // 循环类型
+                        template(v-for="(i1, obj) in DATA")
+                            tr.detailsTable-trbg1
+                                td.detailsTable-b {{obj.type}}&nbsp;{{obj.name}}
+                                td
+                                td
+                                td
+                                td
+                                td
+                                td
+                                td
+                                td {{formatMoney(obj.children ? computeChildren(obj.children) : computeYusuan(obj.yusuan))}}
+                                td
+                                    a.detailsTable-a(v-if="!obj.yusuan" v-on:click="addChildren(i1);") 添加子类
+                                    a.detailsTable-a(v-if="!obj.children" v-on:click="addYusuan(i1)") 添加预算
+                                    a.detailsTable-a(v-on:click="delAll(i1);") 删除
+                            // 循环预算
+                            template(v-for="(i2, obj2) in obj.yusuan")
+                                tr
+                                    td
+                                    td {{obj2.type}}
+                                    td {{obj2.guige}}
+                                    td {{obj2.danwei}}
+                                    td {{formatMoney(obj2.danjia)}}
+                                    td {{obj2.shuliang}}
+                                    td {{formatMoney(obj2.danjia * obj2.shuliang)}}
+                                    td {{obj2.beizhu}}
+                                    td {{obj2.money}}
+                                    td
+                                        a.detailsTable-a(v-on:click="delYusuan(i1, i2);") 删除
+                            // 循环子类
+                            template(v-for="(i2, obj2) in obj.children")
+                                tr.detailsTable-trbg0
+                                    td
+                                    td {{obj2.name}}
+                                    td
+                                    td
+                                    td
+                                    td
+                                    td
+                                    td
+                                    td {{formatMoney(computeYusuan(obj2.yusuan))}}
+                                    td
+                                        a.detailsTable-a(v-on:click="addChildrenYusuan(i1, i2)") 添加预算
+                                        a.detailsTable-a(v-on:click="delChildren(i1, i2);") 删除
+                                // 循环子类的预算
+                                template(v-for="(i3, obj3) in obj2.yusuan")
+                                    tr
+                                        td
+                                        td {{obj3.type}}
+                                        td {{obj3.guige}}
+                                        td {{obj3.danwei}}
+                                        td {{formatMoney(obj3.danjia)}}
+                                        td {{obj3.shuliang}}
+                                        td {{formatMoney(obj3.danjia * obj3.shuliang)}}
+                                        td {{obj3.beizhu}}
+                                        td {{obj3.money}}
+                                        td
+                                            a.detailsTable-a(v-on:click="delChildrenYusuan(i1, i2, i3);") 删除
+                    template(v-else)
+                        tr
+                            td(colspan='10' style='text-align: center;') 暂无数据
+            div.eui-panel-footer.vue-app-2
+                a.easyui-linkbutton(data-options="iconCls: 'icon-clear'" v-on:click="clearDATA();") 清空预算明细
+        // 添加预算弹出层
+        form.easyui-window#addYusuanWindow(title='添加预算' data-options="closed: true, minimizable: false" style='width: 800px;height: 600px;padding: 10px;')
+            p.text 当前项目名称：
+            div.easyui-panel(title='采购材料' data-options="footer: '.addYusuan-panel-footer1'" style='width: 100%;')
+                div.eui-panel-footer.addYusuan-panel-footer1
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-search'") 查询资材
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+            div.easyui-panel(title='采购费用' data-options="footer: '.addYusuan-panel-footer2'" style='width: 100%;')
+                div.eui-panel-footer.addYusuan-panel-footer2
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+            div.easyui-panel(title='工务材料' data-options="footer: '.addYusuan-panel-footer3'" style='width: 100%;')
+                div.eui-panel-footer.addYusuan-panel-footer3
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-search'") 查询资材
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+            div.easyui-panel(title='工务材料' data-options="footer: '.addYusuan-panel-footer4'" style='width: 100%;')
+                div.eui-panel-footer.addYusuan-panel-footer4
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存
+                    a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
         // js
         script(src='../../js/common/require.2.2.0.min.js')
         script(src='../../js/common/require.config.js')
         script.
+            window._DATA = [
+                {"type": "A00", "name": "总体", "yusuan": [
+                    {
+                        "type": "采购材料",
+                        "guige": "CF板-1000×600×50T（1260℃,250KG/M3）",
+                        "danwei": "块",
+                        "danjia": 98.75123,
+                        "shuliang": 1,
+                        "beizhu": "这是备注"
+                    },
+                    {
+                        "type": "工务材料",
+                        "guige": "除尘设备-DCE DLMC 3/6/15-材料费",
+                        "danwei": "台",
+                        "danjia": 880000,
+                        "shuliang": 1,
+                        "beizhu": "1231"
+                    }
+                ]},
+                {"type": "B00", "name": "基础", "children": [
+                    {
+                        "name": "123",
+                        "yusuan": [
+                            {
+                                "type": "采购材料",
+                                "guige": "CF板-1000×600×50T（1260℃,250KG/M3）",
+                                "danwei": "块",
+                                "danjia": 98.75123,
+                                "shuliang": 1,
+                                "beizhu": "这是备注"
+                            }
+                        ]
+                    }
+                ]},
+                {"type": "C00", "name": "基础附带金属结构"}
+            ];
             require(["common", "../../js/shoudongtianjiayusuan/main.js", "formReset"], function(common, shoudongtianjiayusuan, formReset){
-                formReset($("#reset"), $("#vue-app-1"));
+                formReset($("#reset1"), $("#vue-app-1"));
                 shoudongtianjiayusuan();
             });
