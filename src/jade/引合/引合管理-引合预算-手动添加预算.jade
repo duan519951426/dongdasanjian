@@ -118,26 +118,130 @@ html
             div.eui-panel-footer.vue-app-2
                 a.easyui-linkbutton(data-options="iconCls: 'icon-clear'" v-on:click="clearDATA();") 清空预算明细
         // 添加预算弹出层
-        form.easyui-window#addYusuanWindow(title='添加预算' data-options="closed: true, minimizable: false" style='width: 800px;height: 600px;padding: 10px;')
-            p.text 当前项目名称：
-            div.easyui-panel(title='采购材料' data-options="footer: '.addYusuan-panel-footer1'" style='width: 100%;')
-                div.eui-panel-footer.addYusuan-panel-footer1
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-search'") 查询资材
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
-            div.easyui-panel(title='采购费用' data-options="footer: '.addYusuan-panel-footer2'" style='width: 100%;')
-                div.eui-panel-footer.addYusuan-panel-footer2
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
-            div.easyui-panel(title='工务材料' data-options="footer: '.addYusuan-panel-footer3'" style='width: 100%;')
-                div.eui-panel-footer.addYusuan-panel-footer3
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-search'") 查询资材
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
-            div.easyui-panel(title='工务材料' data-options="footer: '.addYusuan-panel-footer4'" style='width: 100%;')
-                div.eui-panel-footer.addYusuan-panel-footer4
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存
-                    a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+        div.easyui-window#addYusuanWindow(title='添加预算' data-options="closed: true, minimizable: false, modal: true" style='position: relative;width: 800px;height: 300px;padding: 10px;')
+            p.text 当前项目名称：{{title}}
+            div.dialog-div
+                div.easyui-tabs(data-options="tabPosition: 'left', headerWidth: 77" style='width: 100%;height: 100%;')
+                    // 采购材料
+                    div(title='采购材料' data-options="footer: '.addYusuan-panel-footer1'" style='width: 100%;')
+                        form#formCaigoucailiao
+                            table.eui-formLayout
+                                tr
+                                    td.textAlign-right 规格型号：
+                                    td.eui-formLayout-option
+                                        select.easyui-combobox.eui-formComponent#caigoucailiao-guige(data-url='http://127.0.0.1:10086/combobox' data-options="editable: false, method: 'GET', valueField: 'text', textField: 'text'" required)
+                                    td.textAlign-right 单位：
+                                    td.eui-formLayout-option {{view.caigoucailiao.danwei}}
+                                tr
+                                    td.textAlign-right 单价：
+                                    td {{view.caigoucailiao.danjia}}
+                                    td.textAlign-right 数量：
+                                    td
+                                        input.easyui-textbox.eui-formComponent#caigoucailiao-num(type='text' value='0' data-options="validType: 'num'" required)
+                                tr
+                                    td.textAlign-right 比例系数：
+                                    td
+                                        input.easyui-textbox.eui-formComponent#caigoucailiao-bili(type='text' value='1' data-options="validType: 'num'" required)
+                                    td.textAlign-right 小计：
+                                    td {{xiaoji(view.caigoucailiao.danjia, view.caigoucailiao.num, view.caigoucailiao.bili)}}
+                                tr
+                                    td.textAlign-right 备注：
+                                    td
+                                        input.easyui-textbox.eui-formExplain#caigoucailiao-beizhu(type='text')
+                        div.eui-panel-footer.addYusuan-panel-footer1
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-search'") 查询资材
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-save'" v-on:click="saveCaigoucailiao()") 保存
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+                    // 采购费用
+                    div(title='采购费用' data-options="footer: '.addYusuan-panel-footer2'" style='width: 100%;')
+                        form#formCaigoufeiyong
+                            table.eui-formLayout
+                                tr
+                                    td.textAlign-right 规格型号：
+                                    td.eui-formLayout-option
+                                        select.easyui-combobox.eui-formComponent#caigoufeiyong-guige(data-url='http://127.0.0.1:10086/combobox' data-options="editable: false, method: 'GET', valueField: 'text', textField: 'text'" required)
+                                    td.textAlign-right 单位：
+                                    td.eui-formLayout-option
+                                        select.easyui-combobox.eui-formComponent#caigoufeiyong-danwei(data-url='http://127.0.0.1:10086/combobox' data-options="editable: false, method: 'GET', valueField: 'text', textField: 'text'" required)
+                                tr
+                                    td.textAlign-right 单价：
+                                    td {{view.caigoufeiyong.danjia}}
+                                    td.textAlign-right 数量：
+                                    td
+                                        input.easyui-textbox.eui-formComponent#caigoufeiyong-num(type='text' value='0' data-options="validType: 'num'" required)
+                                tr
+                                    td.textAlign-right 比例系数：
+                                    td
+                                        input.easyui-textbox.eui-formComponent#caigoufeiyong-bili(type='text' value='1' data-options="validType: 'num'" required)
+                                    td.textAlign-right 小计：
+                                    td {{xiaoji(view.caigoufeiyong.danjia, view.caigoufeiyong.num, view.caigoufeiyong.bili)}}
+                                tr
+                                    td.textAlign-right 备注：
+                                    td
+                                        input.easyui-textbox.eui-formExplain#caigoufeiyong-beizhu(type='text')
+                        div.eui-panel-footer.addYusuan-panel-footer2
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-save'" v-on:click="saveCaigoufeiyong()") 保存
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+                    // 工务材料
+                    div(title='工务材料' data-options="footer: '.addYusuan-panel-footer3'" style='width: 100%;')
+                        form#formGongwucailiao
+                            table.eui-formLayout
+                                tr
+                                    td.textAlign-right 规格型号：
+                                    td.eui-formLayout-option
+                                        select.easyui-combobox.eui-formComponent#gongwucailiao-guige(data-url='http://127.0.0.1:10086/combobox' data-options="editable: false, method: 'GET', valueField: 'text', textField: 'text'" required)
+                                    td.textAlign-right 单位：
+                                    td.eui-formLayout-option {{view.gongwucailiao.danwei}}
+                                tr
+                                    td.textAlign-right 单价：
+                                    td {{view.gongwucailiao.danjia}}
+                                    td.textAlign-right 数量：
+                                    td
+                                        input.easyui-textbox.eui-formComponent#gongwucailiao-num(type='text' value='0' data-options="validType: 'num'" required)
+                                tr
+                                    td.textAlign-right 比例系数：
+                                    td
+                                        input.easyui-textbox.eui-formComponent#gongwucailiao-bili(type='text' value='1' data-options="validType: 'num'" required)
+                                    td.textAlign-right 小计：
+                                    td {{xiaoji(view.gongwucailiao.danjia, view.gongwucailiao.num, view.gongwucailiao.bili)}}
+                                tr
+                                    td.textAlign-right 备注：
+                                    td
+                                        input.easyui-textbox.eui-formExplain#gongwucailiao-beizhu(type='text')
+                        div.eui-panel-footer.addYusuan-panel-footer3
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-search'") 查询资材
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-save'" v-on:click="saveGongwucailiao()") 保存
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+                    // 工务费用
+                    div(title='工务费用' data-options="footer: '.addYusuan-panel-footer4'" style='width: 100%;')
+                        form#formGongwufeiyong
+                            table.eui-formLayout
+                                tr
+                                    td.textAlign-right 规格型号：
+                                    td.eui-formLayout-option
+                                        select.easyui-combobox.eui-formComponent#gongwufeiyong-guige(data-url='http://127.0.0.1:10086/combobox' data-options="editable: false, method: 'GET', valueField: 'text', textField: 'text'" required)
+                                    td.textAlign-right 单位：
+                                    td.eui-formLayout-option
+                                        select.easyui-combobox.eui-formComponent#gongwufeiyong-danwei(data-url='http://127.0.0.1:10086/combobox' data-options="editable: false, method: 'GET', valueField: 'text', textField: 'text'" required)
+                                tr
+                                    td.textAlign-right 单价：
+                                    td {{view.gongwufeiyong.danjia}}
+                                    td.textAlign-right 数量：
+                                    td
+                                        input.easyui-textbox.eui-formComponent#gongwufeiyong-num(type='text' value='0' data-options="validType: 'num'" required)
+                                tr
+                                    td.textAlign-right 比例系数：
+                                    td
+                                        input.easyui-textbox.eui-formComponent#gongwufeiyong-bili(type='text' value='1' data-options="validType: 'num'" required)
+                                    td.textAlign-right 小计：
+                                    td {{xiaoji(view.gongwufeiyong.danjia, view.gongwufeiyong.num, view.gongwufeiyong.bili)}}
+                                tr
+                                    td.textAlign-right 备注：
+                                    td
+                                        input.easyui-textbox.eui-formExplain#gongwufeiyong-beizhu(type='text')
+                        div.eui-panel-footer.addYusuan-panel-footer4
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-save'" v-on:click="saveGongwufeiyong()") 保存
+                            a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
         // js
         script(src='../../js/common/require.2.2.0.min.js')
         script(src='../../js/common/require.config.js')
@@ -178,7 +282,7 @@ html
                 ]},
                 {"type": "C00", "name": "基础附带金属结构"}
             ];
-            require(["common", "../../js/shoudongtianjiayusuan/main.js", "formReset"], function(common, shoudongtianjiayusuan, formReset){
+            require(["common", "validForm", "../../js/shoudongtianjiayusuan/main.js", "formReset"], function(common, validForm, shoudongtianjiayusuan, formReset){
                 formReset($("#reset1"), $("#vue-app-1"));
                 shoudongtianjiayusuan();
             });

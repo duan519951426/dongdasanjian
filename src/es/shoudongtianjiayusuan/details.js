@@ -7,11 +7,10 @@ define((require, exports, module)=>{
     const Vue = require("vue");
     const newArray = require("./newArray.js");
 
+    const $addYusuanWindow = $("#addYusuanWindow");
+
     const main = function(_DATA){
         this._DATA = _DATA;
-        this.I1 = null;
-        this.I2 = null;
-        this.title = null;
     };
     // 渲染表格
     main.prototype.vue_dataBox = function(){
@@ -25,15 +24,6 @@ define((require, exports, module)=>{
                 // 清空预算明细
                 clearDATA: function(){
                     _this._DATA.splice(0, _this._DATA.length);
-                },
-                // 添加class
-                addClass: function(type){
-                    if(/^采购.+$/i.test(type)){
-                        return "0";
-                    }
-                    if(/^工务.+$/i.test(type)){
-                        return "1";
-                    }
                 },
                 // 格式化价格
                 formatMoney: function(money){
@@ -96,14 +86,17 @@ define((require, exports, module)=>{
                 },
                 // 添加预算
                 addYusuan: function(i1){
-                    _this.I1 = i1;
-                    _this.title = _this._DATA[i1].name;
+                    window._note.I1 = i1;
+                    window._note.I2 = null;
+                    window._note.title = _this._DATA[i1].name;
+                    $addYusuanWindow.window("open");
                 },
                 // 添加子类预算
                 addChildrenYusuan: function(i1, i2){
-                    _this.I1 = i1;
-                    _this.I2 = i2;
-                    _this.title = _this._DATA[i1].children[i2].name;
+                    window._note.I1 = i1;
+                    window._note.I2 = i2;
+                    window._note.title = _this._DATA[i1].children[i2].name;
+                    $addYusuanWindow.window("open");
                 },
                 /* 计算项目合计金额 */
                 // 计算预算

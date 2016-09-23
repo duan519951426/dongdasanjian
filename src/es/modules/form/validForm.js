@@ -19,6 +19,11 @@ define((require, exports, module)=>{
         validator: (value, param)=> /^\w+@\w+\.\w+(\.\w+)?$/i.test(value),
         message: '邮箱格式不正确。'
     };
+    // 大于等于0的数字
+    type["num"] = {
+        validator: (value, param)=> /^\d+(\.\d+)?$/.test(value),
+        message: '请输入大于0的数字。'
+    };
 
     const main = ()=>{
         $.extend($.fn.validatebox.defaults.rules, type);

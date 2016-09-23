@@ -114,7 +114,7 @@ define((require, exports, module)=>{
     // 渲染checkbox列表
     main.prototype.vue_checkbox = function(){
         const _this = this;
-        new Vue({
+        this._vue = new Vue({
             el: '#vue-app-1',
             data: {
                 checkdata: _this.data
