@@ -5,7 +5,7 @@
 define((require, exports, module)=>{
     /MSIE [6|7|8]\.0/ig.test(window.navigator.appVersion) ? require("es5") : null;
     const Vue = require("vue");
-    const newArray = require("./newArray.js");
+    const tools = require("./tools.js");
 
     const $addYusuanWindow = $("#addYusuanWindow");
 
@@ -20,8 +20,9 @@ define((require, exports, module)=>{
         _this.data = {
             guige: null,
             danwei: null,
-            num: _this.num.val(),
-            bili: _this.bili.val(),
+            danjia: 0,
+            num: 0,
+            bili: 1,
             beizhu: _this.beizhu.val()
         };
         return _this;
@@ -37,8 +38,9 @@ define((require, exports, module)=>{
         _this.data = {
             guige: null,
             danwei: _this.danwei.val(),
-            num: _this.num.val(),
-            bili: _this.bili.val(),
+            danjia: 0,
+            num: 0,
+            bili: 1,
             beizhu: _this.beizhu.val()
         };
         return _this;
@@ -53,8 +55,9 @@ define((require, exports, module)=>{
         _this.data = {
             guige: null,
             danwei: null,
-            num: _this.num.val(),
-            bili: _this.bili.val(),
+            danjia: 0,
+            num: 0,
+            bili: 1,
             beizhu: _this.beizhu.val()
         };
         return _this;
@@ -70,23 +73,25 @@ define((require, exports, module)=>{
         _this.data = {
             guige: null,
             danwei: _this.danwei.val(),
-            num: _this.num.val(),
-            bili: _this.bili.val(),
+            danjia: 0,
+            num: 0,
+            bili: 1,
             beizhu: _this.beizhu.val()
         };
         return _this;
     })();
 
     // form表单
-    const form = {
+    const $form = {
         caigoucailiao: $("#formCaigoucailiao"),
         caigoufeiyong: $("#formCaigoufeiyong"),
         gongwucailiao: $("#formGongwucailiao"),
         gongwufeiyong: $("#formGongwufeiyong")
     };
 
-    const main = function(_DATA){
+    const main = function(_DATA, details){
         this._DATA = _DATA;
+        this.note = details.note;
     };
     // vue
     main.prototype.vue_addYusuanWindow = function(){
@@ -94,7 +99,7 @@ define((require, exports, module)=>{
         this._vue = new Vue({
             el: "#addYusuanWindow",
             data: {
-                title: window._note.title,
+                title: _this.note.title,
                 DATA: _this._DATA,
                 view: {
                     // 采购材料
@@ -133,32 +138,33 @@ define((require, exports, module)=>{
                 /* 保存 */
                 // 返回要保存的项
                 getYusuan: function(){
-                    // _this._DATA[_this.I1].yusuan
-                    // _this._DATA[_this.I1].children[_this.I2].yusuan
-                    if(window._note.I2 === null){
-                        if(!_this._DATA[window._note.I1].yusuan){
-                            newArray(_this._DATA, window._note.I1, "yusuan");
+                    if(_this.note.I2 === null){
+                        if(!_this._DATA[_this.note.I1].yusuan){
+                            tools.newArray(_this._DATA, _this.note.I1, "yusuan");
                         }
-                        return _this._DATA[window._note.I1].yusuan;
+                        return _this._DATA[_this.note.I1].yusuan;
                     }else{
-                        if(!_this._DATA[window._note.I1].children[window._note.I2].yusuan){
-                            newArray(_this._DATA[window._note.I1].children, window._note.I2, "yusuan");
+                        if(!_this._DATA[_this.note.I1].children[_this.note.I2].yusuan){
+                            tools.newArray(_this._DATA[_this.note.I1].children, _this.note.I2, "yusuan");
                         }
-                        return _this._DATA[_this.I1].children[_this.I2].yusuan;
+                        return _this._DATA[_this.note.I1].children[_this.note.I2].yusuan;
                     }
                 },
                 // 保存
-                save: function(data, type){
+                save: function(data, type, name){
                     if(data.guige && data.guige != "" && data.danwei && data.num >= 0 && data.bili >= 0){
                         const d = this.getYusuan();
                         d.push({
                             "type": type,
+                            "danjia": data.danjia,
                             "danwei": data.danwei,
                             "guige": data.guige,
                             "num": data.num,
                             "bili": data.bili,
                             "beizhu": data.beizhu
                         });
+                        // 保存后重置表单
+                        $form[name].form("reset");
                     }else{
                         $.messager.alert("提示", "请确认数据的有效性。");
                     }
@@ -166,28 +172,30 @@ define((require, exports, module)=>{
                 // 保存采购材料
                 saveCaigoucailiao: function(){
                     const data = caigoucailiao.data;
-                    this.save(data, "采购材料");
+                    this.save(data, "采购材料", "caigoucailiao");
                 },
                 // 保存采购费用
                 saveCaigoufeiyong: function(){
                     const data = caigoufeiyong.data;
-                    this.save(data, "采购费用");
+                    this.save(data, "采购费用", "caigoufeiyong");
                 },
                 // 保存工务材料
                 saveGongwucailiao: function(){
                     const data = gongwucailiao.data;
-                    this.save(data, "工务材料");
+                    this.save(data, "工务材料", "gongwucailiao");
                 },
                 // 保存工务费用
                 saveGongwufeiyong: function(){
                     const data = gongwufeiyong.data;
-                    this.save(data, "工务费用");
+                    this.save(data, "工务费用", "gongwufeiyong");
                 }
             }
         });
     };
     // form的change事件
     main.prototype.formChange = function(){
+        const _this = this;
+
         // 数字的正则表达式
         const numReg = /^\d+(\.\d+)?$/;
 
@@ -201,6 +209,9 @@ define((require, exports, module)=>{
         caigoucailiao.guige.combobox({
             onChange: function(newValue, oldValue){
                 caigoucailiao.data.guige = newValue;
+                // 赋值并重新渲染
+                caigoucailiao.data.danjia = 400;
+                _this._vue.view.caigoucailiao.danjia = 400;
             }
         });
         caigoucailiao.num.textbox({
@@ -211,6 +222,11 @@ define((require, exports, module)=>{
         caigoucailiao.bili.textbox({
             onChange: function(newValue, oldValue){
                 caigoucailiao.data.bili = numReg.test(newValue) ? newValue : return01(caigoucailiao.bili, 1);
+            }
+        });
+        caigoucailiao.beizhu.textbox({
+            onChange: function(newValue, oldValue){
+                caigoucailiao.data.beizhu = newValue;
             }
         });
         // 采购费用
@@ -234,6 +250,11 @@ define((require, exports, module)=>{
                 caigoufeiyong.data.bili = numReg.test(newValue) ? newValue : return01(caigoufeiyong.bili, 1);
             }
         });
+        caigoufeiyong.beizhu.textbox({
+            onChange: function(newValue, oldValue){
+                caigoufeiyong.data.beizhu = newValue;
+            }
+        });
         // 工务材料
         gongwucailiao.guige.combobox({
             onChange: function(newValue, oldValue){
@@ -248,6 +269,11 @@ define((require, exports, module)=>{
         gongwucailiao.bili.textbox({
             onChange: function(newValue, oldValue){
                 gongwucailiao.data.bili = numReg.test(newValue) ? newValue : return01(gongwucailiao.bili, 1);
+            }
+        });
+        gongwucailiao.beizhu.textbox({
+            onChange: function(newValue, oldValue){
+                gongwucailiao.data.beizhu = newValue;
             }
         });
         // 工务费用
@@ -271,13 +297,23 @@ define((require, exports, module)=>{
                 gongwufeiyong.data.bili = numReg.test(newValue) ? newValue : return01(gongwufeiyong.bili, 1);
             }
         });
+        gongwufeiyong.beizhu.textbox({
+            onChange: function(newValue, oldValue){
+                gongwufeiyong.data.beizhu = newValue;
+            }
+        });
     };
     // 当窗口第一次打开时渲染select
     main.prototype.initSelect = function(){
+        const _this = this;
         $addYusuanWindow.window({
             onBeforeOpen: function(){
+                _this._vue.title = _this.note.title;
+
                 $addYusuanWindow.window({
-                    onBeforeOpen: function(){}
+                    onBeforeOpen: function(){
+                        _this._vue.title = _this.note.title;
+                    }
                 }).find(".easyui-combobox").each(function(index){
                     const $this = $(this);
                     $this.combobox({

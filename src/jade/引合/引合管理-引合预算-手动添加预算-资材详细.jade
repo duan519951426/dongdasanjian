@@ -1,0 +1,36 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        form.easyui-panel#form(style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-footer'")
+            // method='POST' enctype='multipart/form-data'
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 资材名称：
+                    td.eui-formLayout-option CF板
+                    td.textAlign-right 规格型号：
+                    td.eui-formLayout-option 1000×600×25T（1260℃,250KG/M3）
+                tr
+                    td.textAlign-right 生产商：
+                    td ISOLITE
+                    td.textAlign-right 供应商：
+                    td 上海埃索威耐火材料有限公司
+                tr
+                    td.textAlign-right 可用库存数量：
+                    td 0
+                    td.textAlign-right 更新时间：
+                    td 2016年06月15日
+                tr
+                    td.textAlign-right 技术说明：
+                    td(colspan='3')
+                        input.easyui-textbox.eui-formExplain(type='text')
+            div.eui-panel-footer
+                a.easyui-linkbutton#save(data-options="iconCls: 'icon-save'") 保存
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "formSubmit"], function (common, formSubmit) {
+                formSubmit($("#save"), $("#form"), "http://127.0.0.1:10086/example");
+            });

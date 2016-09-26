@@ -32,12 +32,12 @@ html
             div.eui-panel-footer.vue-app-1
                 a.easyui-linkbutton(data-options="iconCls: 'icon-ok'" v-on:click="queren();") 确认选择项
                 a.easyui-linkbutton#reset1(data-options="iconCls: 'icon-clear'") 清空选择项
-        // 预算明细及说明
-        form.easyui-panel#vue-app-2(title='预算明细及说明' style='width: 100%;padding: 10px;' data-options="footer: '.vue-app-2', collapsible: true")
+        // 预算明细
+        form.easyui-panel#vue-app-2(title='预算明细' style='width: 100%;padding: 10px;' data-options="footer: '.vue-app-2', collapsible: true")
             p.text
-                span.text-c1 预算总金额: 0.00
-                span.text-c2 采购总金额: 0.00&nbsp;（材料：0.00&nbsp;费用：0.00）
-                span.text-c3 工务总金额: 0.00&nbsp;（材料：0.00&nbsp;费用：0.00）
+                span.text-c1 预算总金额: {{formatMoney(money.caigoucailiao + money.caigoufeiyong + money.gongwucailiao + money.gongwufeiyong)}}
+                span.text-c2 采购总金额: {{formatMoney(money.caigoucailiao + money.caigoufeiyong)}}，（材料：{{formatMoney(computeCaigoucailiao())}}&nbsp;费用：{{formatMoney(computeCaigoufeiyong())}}）
+                span.text-c3 工务总金额: {{formatMoney(money.gongwucailiao + money.gongwufeiyong)}}，（材料：{{formatMoney(computeGongwucailiao())}}&nbsp;费用：{{formatMoney(computeGongwufeiyong())}}）
             table.detailsTable
                 thead
                     tr
@@ -77,8 +77,8 @@ html
                                     td {{obj2.guige}}
                                     td {{obj2.danwei}}
                                     td {{formatMoney(obj2.danjia)}}
-                                    td {{obj2.shuliang}}
-                                    td {{formatMoney(obj2.danjia * obj2.shuliang)}}
+                                    td {{obj2.num}}
+                                    td {{formatMoney(obj2.danjia * obj2.num)}}
                                     td {{obj2.beizhu}}
                                     td {{obj2.money}}
                                     td
@@ -106,8 +106,8 @@ html
                                         td {{obj3.guige}}
                                         td {{obj3.danwei}}
                                         td {{formatMoney(obj3.danjia)}}
-                                        td {{obj3.shuliang}}
-                                        td {{formatMoney(obj3.danjia * obj3.shuliang)}}
+                                        td {{obj3.num}}
+                                        td {{formatMoney(obj3.danjia * obj3.num)}}
                                         td {{obj3.beizhu}}
                                         td {{obj3.money}}
                                         td
@@ -149,9 +149,9 @@ html
                                     td
                                         input.easyui-textbox.eui-formExplain#caigoucailiao-beizhu(type='text')
                         div.eui-panel-footer.addYusuan-panel-footer1
-                            a.easyui-linkbutton(data-options="iconCls: 'icon-search'") 查询资材
+                            a.easyui-linkbutton.search-zicai(data-options="iconCls: 'icon-search'") 查询资材
                             a.easyui-linkbutton(data-options="iconCls: 'icon-save'" v-on:click="saveCaigoucailiao()") 保存
-                            a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+                            a.easyui-linkbutton#editJishuzhibiao-caigoucailiao(data-options="iconCls: 'icon-edit'") 修改技术指标
                     // 采购费用
                     div(title='采购费用' data-options="footer: '.addYusuan-panel-footer2'" style='width: 100%;')
                         form#formCaigoufeiyong
@@ -181,7 +181,7 @@ html
                                         input.easyui-textbox.eui-formExplain#caigoufeiyong-beizhu(type='text')
                         div.eui-panel-footer.addYusuan-panel-footer2
                             a.easyui-linkbutton(data-options="iconCls: 'icon-save'" v-on:click="saveCaigoufeiyong()") 保存
-                            a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+                            a.easyui-linkbutton#editJishuzhibiao-caigoufeiyong(data-options="iconCls: 'icon-edit'") 修改技术指标
                     // 工务材料
                     div(title='工务材料' data-options="footer: '.addYusuan-panel-footer3'" style='width: 100%;')
                         form#formGongwucailiao
@@ -209,9 +209,9 @@ html
                                     td
                                         input.easyui-textbox.eui-formExplain#gongwucailiao-beizhu(type='text')
                         div.eui-panel-footer.addYusuan-panel-footer3
-                            a.easyui-linkbutton(data-options="iconCls: 'icon-search'") 查询资材
+                            a.easyui-linkbutton.search-zicai(data-options="iconCls: 'icon-search'") 查询资材
                             a.easyui-linkbutton(data-options="iconCls: 'icon-save'" v-on:click="saveGongwucailiao()") 保存
-                            a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+                            a.easyui-linkbutton#editJishuzhibiao-gongwucailiao(data-options="iconCls: 'icon-edit'") 修改技术指标
                     // 工务费用
                     div(title='工务费用' data-options="footer: '.addYusuan-panel-footer4'" style='width: 100%;')
                         form#formGongwufeiyong
@@ -241,7 +241,32 @@ html
                                         input.easyui-textbox.eui-formExplain#gongwufeiyong-beizhu(type='text')
                         div.eui-panel-footer.addYusuan-panel-footer4
                             a.easyui-linkbutton(data-options="iconCls: 'icon-save'" v-on:click="saveGongwufeiyong()") 保存
-                            a.easyui-linkbutton(data-options="iconCls: 'icon-edit'") 修改技术指标
+                            a.easyui-linkbutton#editJishuzhibiao-gongwufeiyong(data-options="iconCls: 'icon-edit'") 修改技术指标
+        form.easyui-panel(title='预算说明' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-yusuanshuoming'")
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 预算说明：
+                    td.eui-formLayout-option
+                    td.textAlign-right
+                    td.eui-formLayout-option
+                    td.textAlign-right
+                    td.eui-formLayout-option
+                tr
+                    td(colspan='6')
+                        input.easyui-textbox.eui-formTextarea(data-options="multiline: true" style='width: 665px;height: 80px;')
+            div.eui-panel-footer.eui-panel-yusuanshuoming
+                a.easyui-linkbutton(data-options="iconCls: 'icon-save'") 保存说明
+        form.easyui-panel(title='预算申请' style='width: 100%;padding: 10px;' data-options="footer: '.eui-panel-yusuanshenqing'")
+            table.eui-formLayout
+                tr
+                    td.textAlign-right 确认人：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+                    td.textAlign-right 承认人：
+                    td.eui-formLayout-option
+                        input.easyui-textbox.eui-formComponent(type='text' required)
+            div.eui-panel-footer.eui-panel-yusuanshenqing
+                a.easyui-linkbutton(data-options="iconCls: 'icon-ok'") 提交申请
         // js
         script(src='../../js/common/require.2.2.0.min.js')
         script(src='../../js/common/require.config.js')
@@ -253,7 +278,7 @@ html
                         "guige": "CF板-1000×600×50T（1260℃,250KG/M3）",
                         "danwei": "块",
                         "danjia": 98.75123,
-                        "shuliang": 1,
+                        "num": 1,
                         "beizhu": "这是备注"
                     },
                     {
@@ -261,7 +286,7 @@ html
                         "guige": "除尘设备-DCE DLMC 3/6/15-材料费",
                         "danwei": "台",
                         "danjia": 880000,
-                        "shuliang": 1,
+                        "num": 1,
                         "beizhu": "1231"
                     }
                 ]},
@@ -274,7 +299,7 @@ html
                                 "guige": "CF板-1000×600×50T（1260℃,250KG/M3）",
                                 "danwei": "块",
                                 "danjia": 98.75123,
-                                "shuliang": 1,
+                                "num": 1,
                                 "beizhu": "这是备注"
                             }
                         ]
@@ -282,7 +307,7 @@ html
                 ]},
                 {"type": "C00", "name": "基础附带金属结构"}
             ];
-            require(["common", "validForm", "../../js/shoudongtianjiayusuan/main.js", "formReset"], function(common, validForm, shoudongtianjiayusuan, formReset){
+            require(["common", "validForm", "../../js/shoudongtianjiayusuan/main.js", "formReset", "formSubmit"], function(common, validForm, shoudongtianjiayusuan, formReset, formSubmit){
                 formReset($("#reset1"), $("#vue-app-1"));
                 shoudongtianjiayusuan();
             });

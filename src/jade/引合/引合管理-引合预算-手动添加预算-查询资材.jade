@@ -1,0 +1,58 @@
+doctype html
+html
+    head
+        include ../_modules/_head.jade
+    body
+        div.easyui-layout(style='width: 100%;' data-options="fit: true")
+            div(title=' ' style='width:200px;' data-options="region: 'west', split: true")
+                ul.easyui-tree#tree(data-options="url: 'http://127.0.0.1:10086/treedata1', method: 'get', animate: true")
+            div(style='padding: 10px;' data-options="region: 'center'")
+                // 查询
+                form.eui-queryBox.clearfix#form
+                    div.eui-queryBox-left
+                        span.eui-queryBox-group
+                            |资材名称：
+                            input.easyui-textbox.eui-formComponent#ipt1(type='text')
+                        span.eui-queryBox-group
+                            |规格型号：
+                            input.easyui-textbox.eui-formComponent#ipt2(type='text')
+                    div.eui-queryBox-right
+                        a.easyui-linkbutton#formQuery(data-options="iconCls: 'icon-search'") 查询
+                // 数据
+                table#table(style='width: 100%;')
+                    thead(data-options="frozen: true")
+                        tr
+                            th(data-options="field: 'f1', width: '20%'") 资材名称
+                            th(data-options="field: 'f2', width: '20%'") 规格型号
+                    thead
+                        tr
+                            th(data-options="field: 'f3', width: '20%'") 价格
+                            th(data-options="field: 'f4', width: '25%'") 制造商
+                            th(data-options="field: 'f5', width: '25%'") 供应商
+                            th(data-options="field: 'f6', width: '20%'") 更新时间
+                            th(data-options="field: 'f7', width: '20%'") 库存可用量
+        // js
+        script(src='../../js/common/require.2.2.0.min.js')
+        script(src='../../js/common/require.config.js')
+        script.
+            require(["common", "initDatagrid", "formQuery", "../../js/modules/treeRefreshTable.js"], function(common, initDatagrid, formQuery, treeRefreshTable){
+                var $table = $("#table");
+                initDatagrid($table);
+                formQuery($("#formQuery"), $table, "http://127.0.0.1:10086/data1?name=duan", {
+                    "ipt1": function(){
+                        return $("#ipt1").val();
+                    },
+                    "ipt2": function () {
+                        return $("#ipt2").val();
+                    }
+                });
+                // 点击树刷新表格
+                treeRefreshTable($("#tree"), $table, "http://127.0.0.1:10086/data2", {
+                    "ipt1": function () {
+                        return $("#ipt1").val();
+                    },
+                    "ipt2": function () {
+                        return $("#ipt2").val();
+                    }
+                });
+            });

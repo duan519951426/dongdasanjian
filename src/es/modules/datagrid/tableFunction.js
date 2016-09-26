@@ -55,10 +55,17 @@ define((require, exports, module)=>{
                 width: options && options.width ? options.width : 600,
                 height: options && options.height ? options.height : 400,
                 modal: true,
+                minimizable: false,
                 title: options && options.title ? options.title : " ",
                 onClose: ()=>{
                     callback();
-                    $(".window, .window-shadow, .window-mask").remove();
+                    // 移除节点
+                    const $w = $window.parents(".window");
+                    const $ws = $w.next(".window-shadow");
+                    const $wm = $ws.next(".window-mask");
+                    $wm.remove();
+                    $ws.remove();
+                    $w.remove();
                 }
             });
     };
