@@ -117,9 +117,10 @@ define((require, exports, module)=>{
         this._vue = new Vue({
             el: '#vue-app-1',
             data: {
-                checkdata: _this.data
+                checkdata: _this.data // 数据
             },
             methods: {
+                // 判断一个项目是否存在于预算中
                 checkCk: function(index, event){
                     let r = true;
                     $.each(_this._DATA, function(_index){
@@ -135,14 +136,15 @@ define((require, exports, module)=>{
                         $.messager.alert("提示", "此项已存在于预算中，无法重复添加。");
                     }
                 },
+                // 点击确认将大类添加到预算中
                 queren: function(){
                     $.each(_this.data, function(index){
                         if(this._check && this._check === true){
                             _this._DATA.push(this);
                         }
                     });
-                    _this.resetCheckbox();
-                    $vueApp1.form("reset");
+                    _this.resetCheckbox();    // 重置数据
+                    $vueApp1.form("reset");  // 重置表单
                 }
             }
         });

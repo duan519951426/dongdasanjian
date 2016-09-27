@@ -1,7 +1,7 @@
 /**
  * 表单ajax提交
- * @param $save{object}：提交按钮的$DomElement
- * @param $form{object}：表单的$DomElement
+ * @param $save{$selector}：提交按钮
+ * @param $form{$selector}：表单
  * @param url{string}：表单提交地址
  * @param text{object}：提交成功或失败的提示文字，success 成功，fail 失败
  */

@@ -1,6 +1,6 @@
 /**
  * 按钮操作表格的数据
- * @param $btnElement{$selector}：按钮的$DomElement
+ * @param $btnElement{$selector}：按钮的$selector
  * @param $tableElement{array|null|$selector}：需要刷新的表格的数组或单个对象，如果不刷新就传null
  * @param url{string}：地址
  * @param ctrl{string}：执行方法，有ajax、openWindow、newHref

@@ -4,17 +4,17 @@ deferr.js用于延迟执行事件，防止某些事件在在easyui未初始化�
    
 ```javascript
 define((require, exports, module)=>{
-	const deferr = require("deferr");
+    const deferr = require("deferr");
 
-	const fun = ()=>{
-	};
+    const fun = ()=>{
+    };
 
-	deferr(fun);
+    deferr(fun);
 });
 ```
 ##### 传递参数：
 ```javascript
 deferr(fun);
 ```
-* fun&lt;Function&gt;：需要延迟加载的事件
+* **fun** &lt;function&gt;：需要延迟加载的事件
 

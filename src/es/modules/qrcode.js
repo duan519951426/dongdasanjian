@@ -3,7 +3,7 @@
  * @param e{string|object|array}：
  *   类型为string时：传入id
  *   类型为object时：传入对象，id -> 传入id，l -> 二维码长度和宽度，url -> 二维码地址
- *   类型为array时：传入Object数组
+ *   类型为array时：传入object数组
  * @param l{number}：二维码长度和宽度
  * @param url{string}：二维码地址
  */

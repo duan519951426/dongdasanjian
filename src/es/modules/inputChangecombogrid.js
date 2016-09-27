@@ -1,5 +1,5 @@
 /**
- * // 新增返库
+ * 当input的值改变时刷新combogrid（新增返库）
  * @param $input{$selector}：input(type='text')表单
  * @param $combogrid{$selector}：组合表格
  * @param url{string}：url地址

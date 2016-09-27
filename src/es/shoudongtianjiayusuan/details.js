@@ -10,11 +10,13 @@ define((require, exports, module)=>{
     const $addYusuanWindow = $("#addYusuanWindow");
 
     const main = function(_DATA){
+        // 记录点击
         this.note = {
             I1: null,
             I2: null,
             title: null
         };
+        // 数据
         this._DATA = _DATA;
     };
     // 渲染表格
@@ -23,12 +25,12 @@ define((require, exports, module)=>{
         this._vue = new Vue({
             el: '#vue-app-2',
             data: {
-                DATA: _this._DATA,
-                money: {
-                    caigoucailiao: 0,
-                    caigoufeiyong: 0,
-                    gongwucailiao: 0,
-                    gongwufeiyong: 0
+                DATA: _this._DATA,      // 数据
+                money: {                 // 费用
+                    caigoucailiao: 0,   // 采购材料
+                    caigoufeiyong: 0,   // 采购费用
+                    gongwucailiao: 0,   // 工务材料
+                    gongwufeiyong: 0    // 工务费用
                 }
             },
             methods: {
@@ -39,11 +41,11 @@ define((require, exports, module)=>{
                 // 格式化价格
                 formatMoney: tools.formatMoney,
                 /* 删除 */
-                // 删除大项
+                // 删除大类
                 delAll: function(i1){
                     _this._DATA.splice(i1, 1);
                 },
-                // 删除预算
+                // 删除大类的预算
                 delYusuan: function(i1, i2){
                     _this._DATA[i1].yusuan.splice(i2, 1);
                 },
@@ -51,7 +53,7 @@ define((require, exports, module)=>{
                 delChildren: function(i1, i2){
                     _this._DATA[i1].children.splice(i2, 1);
                 },
-                // 删除子类预算
+                // 删除子类的预算
                 delChildrenYusuan: function(i1, i2, i3){
                     _this._DATA[i1].children[i2].yusuan.splice(i3, 1);
                 },
@@ -75,7 +77,7 @@ define((require, exports, module)=>{
                     _this.note.title = _this._DATA[i1].type + " " + _this._DATA[i1].name;
                     $addYusuanWindow.window("open");
                 },
-                // 添加子类预算
+                // 添加子类的预算
                 addChildrenYusuan: function(i1, i2){
                     _this.note.I1 = i1;
                     _this.note.I2 = i2;
@@ -100,7 +102,7 @@ define((require, exports, module)=>{
                     });
                     return m;
                 },
-                // 计算
+                // 计算（判断是哪一项）
                 computeType: function(type){
                     let m = 0;
                     $.each(this.DATA, function(index){

@@ -30,6 +30,7 @@ define((require, exports, module)=>{
             height: 700
         });
 
+        // 修改技术指标
         btnCtrlTable($editJishuzhibiao.caigoucailiao, null, options.url, "openWindow", null, options.op);
         btnCtrlTable($editJishuzhibiao.caigoufeiyong, null, options.url, "openWindow", null, options.op);
         btnCtrlTable($editJishuzhibiao.gongwucailiao, null, options.url, "openWindow", null, options.op);
