@@ -10,7 +10,7 @@
     });
 </script>
 ```
-* ** $element** &lt;$selector&gt;：表格的$DomElement
+* **$element** &lt;$selector&gt;：表格的$DomElement
 * **treeField** &lt;String&gt;：定义树节点的字段
 * **btn** &lt;object&gt;：如果没有该字段，则对应的按钮为禁止使用状态，有该字段，则对应的按钮为可用状态
     * key：字段
