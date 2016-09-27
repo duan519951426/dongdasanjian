@@ -1,17 +1,26 @@
 define((require, exports, module)=>{
     const tools = {};
 
-    // 新数组，用于触发vue的重新渲染
+    /**
+     * 给数组内的某个对象添加一个新对象，用于触发vue的重新渲染
+     * @param data{array}：数组
+     * @param index{number}：需要添加新对象的数组的索引
+     * @param k{string}：新对象的键值名
+     */
     tools["newArray"] = (data, index, k)=>{
         const x = {};
         x[k] = [];
         $.each(data[index], function(key, value){
             x[key] = value;
         });
-        data.splice(index, 1, x);
+        data.splice(index, 1, x); // 新对象替换数组内的旧对象
     };
 
-    // 格式化价格
+    /**
+     * 格式化价格
+     * @param money{string|number}：价格
+     * @return {string}：格式化后的价格
+     */
     tools["formatMoney"] = (money)=>{
         const x = (()=>{
             const q = typeof money;

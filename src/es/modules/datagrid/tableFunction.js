@@ -1,10 +1,10 @@
 /**
  * 操作表格数据的方法
- * @url<String>：地址
- * @ctrl<String>：执行方法，有ajax、openWindow、newHref
- * @dataFun<Object|Null>：数据以及获取的方法
- * @options<Object>：其他的可选择的配置选项
- * @callback<Function>：事件执行完的回调函数
+ * @param url{string}：地址
+ * @param ctrl{string}：执行方法，有ajax、openWindow、newHref
+ * @param dataFun{object|null}：数据以及获取的方法
+ * @param options{object}：其他的可选择的配置选项
+ * @param callback{function}：事件执行完的回调函数
  */
 
 define((require, exports, module)=>{

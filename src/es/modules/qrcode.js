@@ -1,11 +1,11 @@
 /**
  * 生成二维码
- * @e<String|Object|Array>：
- *   类型为String时：传入id
- *   类型为Object时：传入对象，id -> 传入id，l -> 二维码长度和宽度，url -> 二维码地址
- *   类型为Array时：传入Object数组
- * @l<Number>：二维码长度和宽度
- * @url<String>：二维码地址
+ * @param e{string|object|array}：
+ *   类型为string时：传入id
+ *   类型为object时：传入对象，id -> 传入id，l -> 二维码长度和宽度，url -> 二维码地址
+ *   类型为array时：传入Object数组
+ * @param l{number}：二维码长度和宽度
+ * @param url{string}：二维码地址
  */
 
 define((require, exports, module)=>{

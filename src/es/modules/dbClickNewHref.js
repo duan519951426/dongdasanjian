@@ -1,8 +1,8 @@
 /**
  * 员工动静板js
- * @$table<$selector>：treegrid
- * @url<String>：url地址
- * @dataFun<Object>：数据参数
+ * @param $table{$selector}：treegrid
+ * @param url{string}：url地址
+ * @param dataFun{object}：数据参数
  */
 
 define((require, exports, module)=>{

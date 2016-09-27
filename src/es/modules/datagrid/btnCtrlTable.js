@@ -1,11 +1,11 @@
 /**
  * 按钮操作表格的数据
- * @$btnElement<$selector>：按钮的$DomElement
- * @$tableElement<Array|Null|$selector>：需要刷新的表格的数组或单个对象，如果不刷新就传null
- * @url<String>：地址
- * @ctrl<String>：执行方法，有ajax、openWindow、newHref
- * @dataFun<Object|Null>：数据以及获取的方法
- * @options<Object>：其他的可选择的配置选项
+ * @param $btnElement{$selector}：按钮的$DomElement
+ * @param $tableElement{array|null|$selector}：需要刷新的表格的数组或单个对象，如果不刷新就传null
+ * @param url{string}：地址
+ * @param ctrl{string}：执行方法，有ajax、openWindow、newHref
+ * @param dataFun{object|null}：数据以及获取的方法
+ * @param options{object}：其他的可选择的配置选项
  */
 
 define((require, exports, module)=>{

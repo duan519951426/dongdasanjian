@@ -1,9 +1,9 @@
 /**
  * 表单ajax提交
- * @$save<Object>：提交按钮的$DomElement
- * @$form<Object>：表单的$DomElement
- * @url<String>：表单提交地址
- * @text<Object>：提交成功或失败的提示文字，success 成功，fail 失败
+ * @param $save{object}：提交按钮的$DomElement
+ * @param $form{object}：表单的$DomElement
+ * @param url{string}：表单提交地址
+ * @param text{object}：提交成功或失败的提示文字，success 成功，fail 失败
  */
 
 define((require, exports, module)=>{
