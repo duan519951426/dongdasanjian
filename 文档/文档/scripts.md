@@ -31,9 +31,9 @@
 
 #### 手动添加预算
 手动添加预算页面的js。
-* <span style="color: #00f;">main.js</span> 主文件入口
-* <span style="color: #00f;">checkdata.js</span> 预算成本选择模块
-* <span style="color: #00f;">details.js</span> 预算明细及说明模块
-* <span style="color: #00f;">addYusuan.js</span> 添加预算模块
-* <span style="color: #00f;">searchAndEdit.js</span> 查询资材和修改技术指标模块
+* _main.js_ 主文件入口
+* _checkdata.js_ 预算成本选择模块
+* _details.js_ 预算明细及说明模块
+* _addYusuan.js_ 添加预算模块
+* _searchAndEdit.js_ 查询资材和修改技术指标模块
 * [tools.js](./shoudongtianjiayusuan/tools.md) 扩展工具方法

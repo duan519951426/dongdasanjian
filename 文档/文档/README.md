@@ -5,7 +5,7 @@
 html：jade   
 css：sass   
 javascript：es6   
-框架：[jquery(v1.12.4)](https://jquery.com/)、[easyui(v1.5)](http://www.jeasyui.net/)、[vue(v1.0.26)](https://cn.vuejs.org/)   
+库和框架：[jquery(v1.12.4)](https://jquery.com/)、[easyui(v1.5)](http://www.jeasyui.net/)、[vue(v1.0.26)](https://cn.vuejs.org/)   
 加载工具：[requirejs](http://www.requirejs.cn/)   
 模拟数据：node   
 版本管理工具：git
