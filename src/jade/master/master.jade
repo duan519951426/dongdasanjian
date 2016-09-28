@@ -25,9 +25,17 @@ html
         // 中部
         div(data-options="region: 'center'")
             div.layout.layout-center
+                // 选项卡
                 div.easyui-tabs#master-tabs(data-options="tabHeight: 25, border: false" style='width: 100%;height: 100%;')
                     div(title='首页')
                         iframe(src='../首页/首页.html')
+                // 选项卡的菜单
+                div.easyui-menu#master-tabs-header-menu
+                    div(data-options="name: 'reload', iconCls: 'icon-reload'") 刷新
+                    div.menu-sep
+                    div#master-menu-close(data-options="name: 'close', iconCls: 'icon-tag_remove'") 关闭
+                    div(data-options="name: 'closeEtc', iconCls: 'icon-ticket_remove'") 关闭其他
+                    div(data-options="name: 'closeAll', iconCls: 'icon-box_remove'") 关闭全部
         // js
         script(src='../../js/master/_config.js')
         script(src='../../js/common/require.2.2.0.min.js')

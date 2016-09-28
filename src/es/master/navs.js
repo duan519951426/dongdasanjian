@@ -25,22 +25,26 @@ define((require, exports, module)=>{
         $(this).tree(node.state === "closed" ? "expand" : "collapse", node.target);
     }
     function treeClick($tabs, node){
-        if($tabs.tabs("exists", maxtabs - 1) === false){
-            $tabs.tabs("add", {
-                title: node.text,
-                selected: true,
-                closable: true,
-                content: `<iframe src="${node.url}"></iframe>`
-            });
+        if($tabs.tabs("exists", node.text)){
+            $tabs.tabs("select", node.text);
         }else{
-            $.messager.alert("提示", `最多可以打开${maxtabs}个标签。`, "info");
+            if($tabs.tabs("exists", maxtabs - 1) === false){
+                $tabs.tabs("add", {
+                    title: node.text,
+                    selected: true,
+                    closable: true,
+                    content: `<iframe src="${node.url}"></iframe>`
+                });
+            }else{
+                $.messager.alert("提示", `最多可以打开${maxtabs}个标签。`, "info");
+            }
         }
     }
     const tree = ($tabs)=>{
         $(".easyui-tree").tree({
             onSelect: function(node){
                 if(node.children){
-                    treeSelect(node);
+                    treeSelect.apply(this, [node]);
                 }else if(node.url){
                     treeClick($tabs, node);
                 }

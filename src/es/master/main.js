@@ -12,9 +12,10 @@ define((require, exports, module)=>{
         const m = ()=>{
             const $navs = $("#master-navs");
             const $tabs = $("#master-tabs");
+            const $menu = $("#master-tabs-header-menu");
 
             navs($navs, $tabs);
-            tabs($tabs);
+            tabs($tabs, $menu);
         };
         deferr(m);
     };
