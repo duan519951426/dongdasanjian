@@ -1,0 +1,66 @@
+/* 通用 */
+body, dl, dd, p, pre, hr, figure, h1, h2, h3, h4, h5, h6
+  margin: 0
+th, td, textarea, input, button
+  padding: 0
+ul, ol
+  margin: 0
+  padding: 0
+  list-style: none
+a
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+  img
+    border: none\9
+.clearfix
+  *zoom: 1
+  &:after
+    content: '\200B'
+    display: block
+    height: 0
+    clear: both
+body, html
+  width: 100%
+  height: 100%
+  overflow: hidden
+body
+  font: 12px '微软雅黑'
+/* easyui扩展 */
+.tabs-scroller-left, .tabs-scroller-right
+  z-index: 20
+.layout-center
+  .panel-body
+    position: relative
+/* 底部 */
+.layout
+  width: 100%
+  height: 100%
+.layout-south
+  line-height: 30px
+  text-align: center
+  background-color: rgb(242, 242, 242)
+/* 顶部 */
+.layout-north
+  background-color: rgb(242, 242, 242)
+.logo
+  float: left
+  display: block
+  margin: 10px 0 0 10px
+.layout-north-tools
+  float: right
+  padding: 10px
+// 左侧 */
+// .layout-west
+/* 中部 */
+.layout-center iframe
+  position: absolute
+  z-index: 1
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  height: 100%
+  border: none
+
