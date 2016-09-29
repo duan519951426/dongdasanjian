@@ -24,16 +24,16 @@ define((require, exports, module)=>{
     function treeSelect(node){
         $(this).tree(node.state === "closed" ? "expand" : "collapse", node.target);
     }
-    function treeClick($tabs, node){
-        if($tabs.tabs("exists", node.text)){
-            $tabs.tabs("select", node.text);
+    function treeClick($tabs, text, url){
+        if($tabs.tabs("exists", text)){
+            $tabs.tabs("select", text);
         }else{
             if($tabs.tabs("exists", maxtabs - 1) === false){
                 $tabs.tabs("add", {
-                    title: node.text,
+                    title: text,
                     selected: true,
                     closable: true,
-                    content: `<iframe src="${node.url}"></iframe>`
+                    content: `<iframe src="${url}"></iframe>`
                 });
             }else{
                 $.messager.alert("提示", `最多可以打开${maxtabs}个标签。`, "info");
@@ -46,7 +46,7 @@ define((require, exports, module)=>{
                 if(node.children){
                     treeSelect.apply(this, [node]);
                 }else if(node.url){
-                    treeClick($tabs, node);
+                    treeClick($tabs, node.text, node.url);
                 }
             }
         });

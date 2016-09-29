@@ -15,7 +15,7 @@ define((require, exports, module)=>{
             const $menu = $("#master-tabs-header-menu");
 
             navs($navs, $tabs);
-            tabs($tabs, $menu);
+            tabs($tabs, $menu, $(".tabs-inner").length);
         };
         deferr(m);
     };
