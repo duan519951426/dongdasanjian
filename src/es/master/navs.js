@@ -24,6 +24,18 @@ define((require, exports, module)=>{
     function treeSelect(node){
         $(this).tree(node.state === "closed" ? "expand" : "collapse", node.target);
     }
+    const tree = ($tabs)=>{
+        $(".easyui-tree").tree({
+            onSelect: function(node){
+                if(node.children){
+                    treeSelect.apply(this, [node]);
+                }else if(node.url){
+                    treeClick($tabs, node.text, node.url);
+                }
+            }
+        });
+    };
+    // 点击添加标签
     function treeClick($tabs, text, url){
         if($tabs.tabs("exists", text)){
             $tabs.tabs("select", text);
@@ -40,22 +52,24 @@ define((require, exports, module)=>{
             }
         }
     }
-    const tree = ($tabs)=>{
-        $(".easyui-tree").tree({
-            onSelect: function(node){
-                if(node.children){
-                    treeSelect.apply(this, [node]);
-                }else if(node.url){
-                    treeClick($tabs, node.text, node.url);
-                }
-            }
-        });
+    // 对外接口
+    const extend = ($tabs)=>{
+        window._extend = window._extend || {};
+        window._extend.addTabs = function($element){
+            $element.on("click", function(event){
+                const $this = $(this);
+                const text = $this.attr("data-tabs-title"),
+                    url = $this.attr("data-tabs-url");
+                treeClick($tabs, text, url);
+            });
+        };
     };
 
     const main = ($navs, $tabs)=>{
         const navs = window._config.navs;
         h1($navs, navs);
         tree($tabs);
+        extend($tabs);
     };
 
     module.exports = main;
